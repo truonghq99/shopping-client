@@ -13,10 +13,9 @@ import lombok.Data;
 @Entity
 @Table(name = "account")
 public class Account {
-    @Column(name="id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     @Column(name="username")
     private String username;

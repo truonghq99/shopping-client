@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/background.css">
+    <title>Create new Item</title>
+</head>
+
+<body>
+    <form id="msform" th:action="@{/saveItem}" method="post" th:object="${item}">
+        <fieldset>
+            <h2 class="fs-title">Create new Item</h1>
+                <input type="text" th:field="*{title}" placeholder="Title">
+                <select class="fs-text" th:option="*{type}" placeholder="Type">
+                    <option value="Book">Book</option>
+                    <option value="Clothes">Clothes</option>
+                </select>
+                <script>
+                    type;
+                    if (onclick == "Book") {
+                        alert("book");
+                    } else if (type == "Clothes") {
+                        alert("clothes");
+                    }
+                </script>
+
+                <input type="text" th:field="*{mfgDate}" placeholder="MfgDate">
+                <input type="text" th:field="*{price}" placeholder="Price">
+        </fieldset>
+    </form>
+</body>
+
+</html>

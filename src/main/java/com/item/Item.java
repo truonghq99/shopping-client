@@ -14,25 +14,27 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Item")
 public class Item implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    protected int id;
     @Column(name="title")
-    private String title;
+    protected String title;
     @Column(name="type")
-    @Enumerated(EnumType.STRING) 
-    private Type type;
+    @Enumerated(EnumType.STRING)
+    protected Type type;
     @Column(name="price")
-    private float price;
+    protected float price;
     @Column(name="mfgDate")
-    private Date mfgDate;
+    protected String mfgDate;
 
     public static enum Type{
         Book,Clothes,Electronics

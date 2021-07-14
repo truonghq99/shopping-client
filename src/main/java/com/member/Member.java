@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class Member implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     @OneToOne
     @JoinColumn(name="id", nullable=false)
     private Account account;

@@ -2,9 +2,19 @@
   var current_fs, next_fs, previous_fs; //fieldsets
   var left, opacity, scale; //fieldset properties which we will animate
   var animating; //flag to prevent quick multi-click glitches
+  var password = document.getElementById("password");
+  var confirm_password = document.getElementById("confirm-password");
 
   $(".next").click(function() {
-      alert(animating)
+      function check_pass() {
+          if (password.value == confirm_password.value) {
+              confirm_password.setCustomValidity("");
+              alert("yes");
+          } else {
+              confirm_password.setCustomValidity("Password is not match!!")
+              alert("fail");
+          }
+      }
       if (animating) return false;
       animating = true;
 

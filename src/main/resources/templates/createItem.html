@@ -14,7 +14,7 @@
     <form id="msform" th:action="@{/saveItem}" method="post" th:object="${item}">
         <fieldset>
             <h2 class="fs-title">Create new Item</h1>
-                <input type="text" th:field="*{title}" placeholder="Title">
+                <input type="text" th:field="*{title}">
                 <select class="fs-text" th:option="*{type}" placeholder="Type">
                     <option value="Book">Book</option>
                     <option value="Clothes">Clothes</option>

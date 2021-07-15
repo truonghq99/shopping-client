@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="css/signup.css">
+
+    <title>List members</title>
+</head>
+
+<body>
+    <form id="msform">
+        <H1>List Member</H1>
+        <table width="200%" padding="10" border=1>
+            <tr>
+                <td>ID</td>
+                <td>Username</td>
+                <td>Full name</td>
+                <td>Date of birth</td>
+                <td>Address</td>
+                <td>Phone number</td>
+                <td>Email</td>
+            </tr>
+            <tr th:each="member :${members}">
+                <td>
+                    <a th:text="${member.id}"></a>
+                </td>
+                <td>
+                    <a th:text="${member.username}"></a>
+                </td>
+                <td>
+                    <a th:text="${member.fullname.firstName}+${member.fullname.lastName}"></a>
+                </td>
+                <td>
+                    <a th:text="${member.dateOfBirth}"></a>
+                </td>
+                <td>
+                    <a th:text="${member.address}"></a>
+                </td>
+                <td>
+                    <a th:text="${member.phoneNumber}"></a>
+                </td>
+                <td>
+                    <a th:text="${member.email}"></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script type="text/javascript" src="js/display.js"></script>
+
+</html>

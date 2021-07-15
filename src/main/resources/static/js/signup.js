@@ -5,16 +5,17 @@
   var password = document.getElementById("password");
   var confirm_password = document.getElementById("confirm-password");
 
-  $(".next").click(function() {
-      function check_pass() {
-          if (password.value == confirm_password.value) {
-              confirm_password.setCustomValidity("");
-              alert("yes");
-          } else {
-              confirm_password.setCustomValidity("Password is not match!!")
-              alert("fail");
-          }
+  function Validate() {
+      var password = document.getElementById("password").value;
+      var confirm_password = document.getElementById("confirm_password").value;
+      if (password != confirm_password) {
+          alert("Passwords do not match.");
+          return false;
       }
+      return true;
+  }
+
+  $(".next").click(function() {
       if (animating) return false;
       animating = true;
 

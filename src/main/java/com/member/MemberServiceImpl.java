@@ -1,5 +1,10 @@
 package com.member;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -15,5 +20,11 @@ public class MemberServiceImpl implements MemberService {
     public Member createMember(Member member){
         member= new Member();
         return repo.save(member);
+    }
+
+    @Override
+    public List<Member> getAllMembers(){
+        return (List<Member>) repo.findAll();
+        
     }
 }

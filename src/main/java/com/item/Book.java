@@ -1,16 +1,15 @@
 package com.item;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+
+
 
 @Entity
-public class Book extends Item implements Serializable{
+public class Book extends Item{
     @Column(name="author")
     private String author;
     @Column(name="publisher")

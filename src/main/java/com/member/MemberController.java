@@ -38,9 +38,8 @@ public class MemberController {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+  
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @GetMapping("/")
@@ -68,9 +67,15 @@ public class MemberController {
     }
     
     @PostMapping(value = "/saveMember")
-    public String saveMember(@Validated Member member) {
+    public String saveMember(Member member) {
         service.createMember(member);
-        return "index";
+        System.out.println("id:"+member.getId());
+        System.out.println("username:"+member.getUsername());
+        System.out.println("dob:"+member.getDateOfBirth());
+        System.out.println("pass:"+member.getPassword());
+        System.out.println("email:"+member.getEmail());
+        System.out.println("phone:"+member.getPhoneNumber());
+        return "index";      
     }
 
     // Show list member

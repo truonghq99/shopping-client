@@ -15,18 +15,18 @@
         <fieldset>
             <h2 class=" fs-title ">Create your account</h2>
             <h3 class="fs-subtitle ">This is step 1</h3>
-            <input type="text " th:field="*{username}" placeholder="Username " />
+            <input type="text" th:field="*{username}" placeholder="Username " />
             <input type="password" placeholder="Password" id="password" />
             <input type="password" th:field="*{password}" placeholder="Confirm Password " id="confirm_password" />
             <h2 class="fs-title ">Personal Details</h2>
             <h3 class="fs-subtitle ">We will never sell it</h3>
-            <input type="date " th:date="*{dateOfBirth} " placeholder="Date of birth " />
-            <input type="text " th:field="*{phoneNumber} " placeholder="Phone number " />
-            <input type="email " th:field="*{email} " placeholder="Email " />
-            <button type="submit " value="Submit ">Submit</button>
+            <input type="date" th:text="${#dates.format(dateOfBirth, 'yyyy-MM-dd')} " placeholder="Date of birth " />
+            <input type="text" th:field="*{phoneNumber} " placeholder="Phone number " />
+            <input type="email" th:field="*{email} " placeholder="Email " />
+            <button type="submit" value="Submit ">Submit</button>
         </fieldset>
     </form>
 </body>
-<script src="js/signup.js"></script>
+<script src="js/signup.js "></script>
 
 </html>

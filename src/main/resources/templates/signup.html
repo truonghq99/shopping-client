@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <html xmlns:th="http://www.thymeleaf.org">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
+    <html xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="css/signup.css">
     <script type="text/javascript"></script>
 
@@ -16,23 +17,34 @@
 
 <body>
     <!-- multistep form -->
-    <form id="msform" th:action="@{/saveMember}" method="POST" th:object="${member}">
+    <form action="#" id="msform" th:action="@{/saveMember}" method="POST" th:object="${member}">
         <!-- progressbar -->
         <ul id="progressbar">
             <li class="active">Account Setup</li>
+            <li>Personal Detail</li>
             <li>Profiles</li>
-            <li>Personal Details</li>
         </ul>
         <!-- fieldsets -->
         <fieldset>
             <h2 class=" fs-title ">Create your account</h2>
             <h3 class="fs-subtitle ">This is step 1</h3>
             <input type="text " th:field="*{username}" placeholder="Username " />
-            <input type="password" placeholder="Password " id="password" />
+            <input type="password" placeholder="Password" id="password" />
             <input type="password" th:field="*{password}" placeholder="Confirm Password " id="confirm_password" />
             <input type="button" name="next " class="next action-button " value="Next " onclick="Validate()" />
-
         </fieldset>
+        <fieldset>
+            <h2 class="fs-title ">Personal Details</h2>
+            <h3 class="fs-subtitle ">We will never sell it</h3>
+            <input type="date " th:date="*{dateOfBirth} " placeholder="Date of birth " />
+            <input type="text " th:field="*{phoneNumber} " placeholder="Phone number " />
+            <input type="email " th:field="*{email} " placeholder="Email " />
+            <input type="button " name="previous " class="previous action-button " value="Previous " />
+            <input type="button " name="next " class="next action-button " value="Next " />
+            <button type="submit " value="Submit ">Submit</button>
+        </fieldset>
+    </form>
+    <form id="msform">
         <fieldset>
             <h2 class=" fs-title ">Profiles</h2>
             <h3 class="fs-subtitle ">Your full name</h3>
@@ -40,18 +52,6 @@
             <input type="text " th:field="${fullname.middleName} " placeholder="Middle Name " />
             <input type="text " th:field="${fullname.lastName} " placeholder="Last Name " />
             <input type="button " name="previous " class="previous action-button " value="Previous " />
-            <input type="button " name="next " class="next action-button " value="Next " />
-        </fieldset>
-        <fieldset>
-            <h2 class="fs-title ">Personal Details</h2>
-            <h3 class="fs-subtitle ">We will never sell it</h3>
-            <input type="date" th:field="*{dateOfBirth} " placeholder="Date of birth " />
-            <input type="text" th:field="*{phoneNumber} " placeholder="Phone number " />
-            <textarea name="address " placeholder="Address "></textarea>
-            <input type="email" th:field="*{email} " placeholder="Email " />
-            <input type="button" name="previous " class="previous action-button " value="Previous " />
-            <button class="action-button" type="submit">Confirm</button>
-
         </fieldset>
     </form>
 </body>

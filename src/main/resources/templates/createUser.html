@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+
+<body>
+    <form id="msform" action="#" th:action="@{/saveMember}" th:object="${member}" method="POST">
+        <fieldset>
+            <h2 class=" fs-title ">Create your account</h2>
+            <h3 class="fs-subtitle ">This is step 1</h3>
+            <input type="text " th:field="*{username}" placeholder="Username " />
+            <input type="password" placeholder="Password" id="password" />
+            <input type="password" th:field="*{password}" placeholder="Confirm Password " id="confirm_password" />
+            <h2 class="fs-title ">Personal Details</h2>
+            <h3 class="fs-subtitle ">We will never sell it</h3>
+            <input type="date " th:date="*{dateOfBirth} " placeholder="Date of birth " />
+            <input type="text " th:field="*{phoneNumber} " placeholder="Phone number " />
+            <input type="email " th:field="*{email} " placeholder="Email " />
+            <button type="submit " value="Submit ">Submit</button>
+        </fieldset>
+    </form>
+</body>
+<script src="js/signup.js"></script>
+
+</html>

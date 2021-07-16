@@ -11,8 +11,8 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address saveAddress(Address address){
-        address= new Address();
-        return repo.save(address);
+        address = new Address();
+        return repo.saveAndFlush(address);
     }
 
 }

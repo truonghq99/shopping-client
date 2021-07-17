@@ -3,25 +3,19 @@ package com.member;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-
 import com.address.Address;
 import com.address.AddressService;
 import com.fullname.Fullname;
 import com.fullname.FullnameService;
-
-import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,8 +42,7 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String showRegistrationForm(Model model) {
-        Member member = new Member();
+    public String showRegistrationForm(Model model, Member member) {
         Fullname fullname = new Fullname();
         Address address = new Address();
         model.addAttribute("member", member);
@@ -67,7 +60,7 @@ public class MemberController {
     }
     
     @PostMapping(value = "/saveMember")
-    public String saveMember(Member member) {
+    public String saveMember(@ModelAttribute("Member") Member member) {
         service.createMember(member);
         System.out.println("id:"+member.getId());
         System.out.println("username:"+member.getUsername());
@@ -75,6 +68,7 @@ public class MemberController {
         System.out.println("pass:"+member.getPassword());
         System.out.println("email:"+member.getEmail());
         System.out.println("phone:"+member.getPhoneNumber());
+        System.out.println("position:"+member.getPosition());
         return "index";      
     }
 

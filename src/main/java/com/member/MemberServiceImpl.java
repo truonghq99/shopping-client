@@ -17,8 +17,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member createMember(Member member){
-        member= new Member();
-        return repo.saveAndFlush(member);
+        return repo.save(member);
     }
 
     @Override

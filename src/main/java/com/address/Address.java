@@ -1,5 +1,6 @@
 package com.address;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class Address{
     private String city;
     private String state;
     private String country;
-    @OneToOne
-    @JoinColumn(name="member_id", nullable = false)
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="member_id",referencedColumnName = "id" ,nullable = false)
     private Member memberId;
 }

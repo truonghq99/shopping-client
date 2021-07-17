@@ -3,6 +3,7 @@ package com.member;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.address.Address;
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,9 +74,10 @@ public class MemberController {
     }
     
     //save member
-    @PostMapping(value = "/saveMember")
-    public String saveMember(@ModelAttribute("Member") Member member) {
+    @PostMapping(value = "/redirect")
+    public String saveMember(@ModelAttribute("Member") Member member, HttpSession session) {
         service.createMember(member);
+        session.setAttribute("idSession", member);
         System.out.println("id:"+member.getId());
         System.out.println("username:"+member.getUsername());
         System.out.println("dob:"+member.getDateOfBirth());
@@ -82,7 +85,7 @@ public class MemberController {
         System.out.println("email:"+member.getEmail());
         System.out.println("phone:"+member.getPhoneNumber());
         System.out.println("position:"+member.getPosition());
-        return "index";
+        return "redirect:/signup-step-2";
     }
 
     //show home page admin
@@ -90,6 +93,11 @@ public class MemberController {
     public String showHomePage(){
         return "admin/home_page";
     }
+    @RequestMapping(value="/failed-page")
+    public String showFailedPage(){
+        return "base/404";
+    }
+
 
     // Show list member
     @RequestMapping(value = "/list_members")
@@ -106,9 +114,17 @@ public class MemberController {
     }
 
     @PostMapping(value="/saveInfo")
-    public void saveInfo(Fullname fullname, Address address){
+    public String saveInfo(@ModelAttribute("Member") Member member,Model model,Fullname fullname, Address address){
+        member.setFullname(fullname);
+        member.setAddress(address);
+        System.out.println(member.toString());
+        fullname.setMemberId(member);
+        address.setMemberId(member);
         fullnameService.saveFullName(fullname);
+        System.out.println("1");
         addressService.saveAddress(address);
+        System.out.println("2");
+        return "index";
     }
 
 }

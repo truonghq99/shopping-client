@@ -1,5 +1,6 @@
 package com.fullname;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ import javax.persistence.Table;
 
 
 import com.member.Member;
+
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +30,8 @@ public class Fullname {
     private String firstName;
     private String middleName;
     private String lastName;
-    @OneToOne
-    @JoinColumn(name="member_id", nullable = true)
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="member_id",referencedColumnName = "id" ,nullable = false)
     private Member memberId;
 }

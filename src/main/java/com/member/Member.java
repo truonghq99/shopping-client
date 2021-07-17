@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.address.Address;
+import com.fullname.Fullname;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,5 +30,11 @@ public class Member implements Serializable {
     private String phoneNumber;
     private String position;
     private String email;
+
+    @OneToOne(mappedBy="memberId")
+    private Fullname fullname;
+
+    @OneToOne(mappedBy="memberId")
+    private Address address;
 
 }

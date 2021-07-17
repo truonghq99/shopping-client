@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="css/signup.css">
+    <script type="text/javascript"></script>
+
+
+
+</head>
+
+<body>
+    <!-- multistep form -->
+    <form action="#" id="msform" th:action="@{/login}" method="POST" th:object="${member}">
+        <!-- fieldsets -->
+        <fieldset>
+            <h2 class=" fs-title ">Enter your account</h2>
+            <input type="text" th:field="*{username}" placeholder="Username " />
+            <input type="password" th:field="*{password}" placeholder="Password" />
+            <button class="action-button" type="submit " value="Submit ">Submit</button>
+        </fieldset>
+    </form>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+<script src="js/signup.js "></script>
+
+
+</html>

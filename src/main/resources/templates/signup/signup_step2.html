@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="css/signup.css">
+    <script type="text/javascript"></script>
+</head>
+
+<body>
+    <form action="#" id="msform" th:action="@{/saveInfo}" method="POST">
+        <ul id="progressbar">
+            <li class="active">Account Setup</li>
+            <li>Profiles</li>
+            <li>Address</li>
+        </ul>
+        <fieldset>
+            <h2 class=" fs-title ">Create account successfully</h2>
+            <h3 class="fs-subtitle ">Please continue to finish your profile</h3>
+            <input type="button" name="Next" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset>
+            <h2 class=" fs-title ">Profiles</h2>
+            <h3 class="fs-subtitle ">Your full name</h3>
+            <input type="text" th:field="*{fullname.firstName}" placeholder="First Name " />
+            <input type="text" th:field="*{fullname.middleName}" placeholder="Middle Name " />
+            <input type="text" th:field="*{fullname.lastName}" placeholder="Last Name " />
+            <input type="button" name="Next" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset>
+            <h2 class=" fs-title ">Address</h2>
+            <h3 class="fs-subtitle ">Your address</h3>
+            <input type="text " th:field="*{address.name} " placeholder="Name of the address" />
+            <input type="text " th:field="*{address.street} " placeholder="Street" />
+            <input type="text " th:field="*{address.district} " placeholder="District" />
+            <input type="text " th:field="*{address.city} " placeholder="City" />
+            <input type="text " th:field="*{address.state} " placeholder="State" />
+            <input type="text " th:field="*{address.country} " placeholder="Country" />
+            <input type="button" name="Previous" class="previous action-button" value="Previous" />
+            <button type="submit" class="action-button">Submit</button>
+        </fieldset>
+    </form>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+<script src="js/signup.js"></script>
+
+</html>

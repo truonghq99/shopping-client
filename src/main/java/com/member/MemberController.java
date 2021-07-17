@@ -3,6 +3,8 @@ package com.member;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 
+import javax.servlet.http.HttpSession;
+
 import com.address.Address;
 import com.address.AddressService;
 import com.fullname.Fullname;
@@ -41,24 +43,35 @@ public class MemberController {
         return "index.html";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String showLoginForm(Model model,Member member){
+        model.addAttribute("username", member.getUsername());
+        model.addAttribute("password", member.getPassword());
+        return "client/login";
+    }
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String checkLogin(Member member){
+        String response=service.checkLogin(member.getUsername(), member.getPassword());
+        System.out.println(response);
+        if(response.equals("client")){
+            System.out.println("Login successful");
+            return "index";
+        }else if(response.equals("staff")){
+            System.out.println("Welcome admin");
+            return "redirect:/home-page";
+        }else{
+            System.out.println("Login failed");
+            return "client/login";
+        }
+    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String showRegistrationForm(Model model, Member member) {
-        Fullname fullname = new Fullname();
-        Address address = new Address();
         model.addAttribute("member", member);
-        model.addAttribute("address", address);
-        model.addAttribute("fullname", fullname);
-        return "createUser";
-    }
-    @PostMapping(value="/saveFullName")
-    public void saveFullName(@Validated Fullname fullname){
-        fullnameService.saveFullName(fullname);
-    }
-    @PostMapping(value="/saveAddress")
-    public void saveAddress(@Validated Address address){
-        addressService.saveAddress(address);
+        return "signup/signup";
     }
     
+    //save member
     @PostMapping(value = "/saveMember")
     public String saveMember(@ModelAttribute("Member") Member member) {
         service.createMember(member);
@@ -69,7 +82,13 @@ public class MemberController {
         System.out.println("email:"+member.getEmail());
         System.out.println("phone:"+member.getPhoneNumber());
         System.out.println("position:"+member.getPosition());
-        return "index";      
+        return "index";
+    }
+
+    //show home page admin
+    @RequestMapping(value="/home-page")
+    public String showHomePage(){
+        return "admin/home_page";
     }
 
     // Show list member
@@ -77,6 +96,19 @@ public class MemberController {
     public String showListMembers(Model model, Member member) {
         model.addAttribute("members", service.getAllMembers());
         return "admin/list_members";
+    }
+
+    @RequestMapping(value ="/signup-step-2", method= RequestMethod.GET)
+    public String showRegistrationForm2(Model model){
+        model.addAttribute("fullname", new Fullname());
+        model.addAttribute("address", new Address());
+        return "signup/signup_step2";
+    }
+
+    @PostMapping(value="/saveInfo")
+    public void saveInfo(Fullname fullname, Address address){
+        fullnameService.saveFullName(fullname);
+        addressService.saveAddress(address);
     }
 
 }

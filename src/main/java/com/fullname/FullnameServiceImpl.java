@@ -11,7 +11,6 @@ public class FullnameServiceImpl implements FullnameService {
 
     @Override
     public Fullname saveFullName(Fullname fullname) {
-        fullname= new Fullname();
         return repo.save(fullname);
     }
 }

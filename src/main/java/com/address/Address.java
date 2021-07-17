@@ -27,10 +27,11 @@ public class Address{
     private int id;
     private String name;
     private String street;
+    private String district;
     private String city;
     private String state;
     private String country;
     @OneToOne
-    @JoinColumn(name="member_id", nullable = true)
+    @JoinColumn(name="member_id", nullable = false)
     private Member memberId;
 }

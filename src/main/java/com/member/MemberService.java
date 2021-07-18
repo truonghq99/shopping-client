@@ -9,8 +9,9 @@ public interface MemberService {
 
     Member createMember(Member member);
 
-    List<Member> getAllMembers();
+    Member findById(int id);
 
+    List<Member> getAllMembers();
 
     String checkLogin(String username,String password);
 }

@@ -1,11 +1,11 @@
 package com.fullname;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,7 +31,6 @@ public class Fullname {
     private String middleName;
     private String lastName;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="member_id",referencedColumnName = "id" ,nullable = false)
-    private Member memberId;
+    @OneToOne(mappedBy="fullnameId")
+    private Member member;
 }

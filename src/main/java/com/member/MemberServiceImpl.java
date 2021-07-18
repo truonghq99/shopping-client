@@ -17,6 +17,7 @@ public class MemberServiceImpl implements MemberService {
         return repo.saveAndFlush(member);
     }
 
+  
     @Override
     public List<Member> getAllMembers() {
         return (List<Member>) repo.findAll();
@@ -28,14 +29,23 @@ public class MemberServiceImpl implements MemberService {
         Member member = new Member();
         member=repo.findMemberByUsername(username);
         if (password.equals(member.getPassword())) {
-            if(member.getPosition().equalsIgnoreCase("null")){
-                return "client";
-            }else{
+            if(member.getPosition().equalsIgnoreCase("staff")){
                 return "staff";
+            }else if(member.getPosition().equalsIgnoreCase("manager")){
+                return "manager";
+            }else if(member.getPosition().equalsIgnoreCase("admin")){
+                return "admin";
+            }else{
+                return "client";
             }
         }else{
             return "failed";
         }
+    }
+
+    @Override
+    public Member findById(int id){
+        return repo.getById(id);
     }
 
 }

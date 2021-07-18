@@ -1,11 +1,10 @@
 package com.address;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,7 +31,8 @@ public class Address{
     private String city;
     private String state;
     private String country;
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="member_id",referencedColumnName = "id" ,nullable = false)
-    private Member memberId;
+
+    @OneToOne(mappedBy="addressId")
+    private Member member;
+
 }

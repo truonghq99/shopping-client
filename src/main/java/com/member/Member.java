@@ -3,10 +3,12 @@ package com.member;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,11 +32,12 @@ public class Member implements Serializable {
     private String phoneNumber;
     private String position;
     private String email;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="fullname_id",referencedColumnName = "id" ,nullable = true)
+    private Fullname fullnameId;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="address_id",referencedColumnName = "id" ,nullable = true)
+    private Address addressId;
 
-    @OneToOne(mappedBy="memberId")
-    private Fullname fullname;
-
-    @OneToOne(mappedBy="memberId")
-    private Address address;
 
 }

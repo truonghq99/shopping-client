@@ -31,11 +31,16 @@
                 <td>
                     <a th:text="${member.username}"></a>
                 </td>
-
+                <td>
+                    <a th:text="${member.fullnameId.firstName}"></a>
+                </td>
                 <td>
                     <a th:text="${member.dateOfBirth}"></a>
                 </td>
-
+                <td>
+                    <a th:text="${member.addressId.name}+', '+${member.addressId.street}
+                    +', '+${member.addressId.district}+', '+${member.addressId.city}+', '+${member.addressId.state}+', '+${member.addressId.country}"></a>
+                </td>
                 <td>
                     <a th:text="${member.phoneNumber}"></a>
                 </td>

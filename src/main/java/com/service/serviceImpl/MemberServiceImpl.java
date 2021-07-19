@@ -1,6 +1,10 @@
-package com.member;
+package com.service.serviceImpl;
 
 import java.util.List;
+
+import com.model.Member;
+import com.repository.MemberRepository;
+import com.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

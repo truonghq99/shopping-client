@@ -1,4 +1,6 @@
-package com.fullname;
+package com.service;
+
+import com.model.Fullname;
 
 import org.springframework.stereotype.Service;
 

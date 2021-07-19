@@ -1,4 +1,4 @@
-package com.fullname;
+package com.model;
 
 
 import javax.persistence.Entity;
@@ -8,11 +8,6 @@ import javax.persistence.Id;
 
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-
-import com.member.Member;
-
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.member;
+package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -11,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.address.Address;
-import com.fullname.Fullname;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,6 +35,4 @@ public class Member implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="address_id",referencedColumnName = "id" ,nullable = true)
     private Address addressId;
-
-
 }

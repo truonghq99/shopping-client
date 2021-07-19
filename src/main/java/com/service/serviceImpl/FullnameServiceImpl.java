@@ -1,4 +1,8 @@
-package com.fullname;
+package com.service.serviceImpl;
+
+import com.model.Fullname;
+import com.repository.FullnameRepository;
+import com.service.FullnameService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,7 @@
-package com.item;
+package com.controller;
+
+import com.model.Item;
+import com.service.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

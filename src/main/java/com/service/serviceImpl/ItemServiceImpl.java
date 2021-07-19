@@ -1,5 +1,10 @@
-package com.item;
+package com.service.serviceImpl;
 import org.springframework.stereotype.Service;
+
+import com.model.Item;
+import com.repository.ItemRepository;
+import com.service.ItemService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
@@ -10,7 +15,6 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public Item createItem(Item item){ 
-        item= new Item();
         return repo.save(item);
     }
 

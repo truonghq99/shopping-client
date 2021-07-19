@@ -1,6 +1,8 @@
-package com.member;
+package com.repository;
 
 
+
+import com.model.Member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

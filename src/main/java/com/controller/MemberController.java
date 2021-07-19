@@ -1,4 +1,4 @@
-package com.member;
+package com.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -6,10 +6,13 @@ import org.springframework.validation.annotation.Validated;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.address.Address;
-import com.address.AddressService;
-import com.fullname.Fullname;
-import com.fullname.FullnameService;
+import com.model.Address;
+import com.model.Fullname;
+import com.model.Member;
+import com.service.AddressService;
+import com.service.FullnameService;
+import com.service.MemberService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,6 @@
-package com.address;
+package com.service;
+
+import com.model.Address;
 
 import org.springframework.stereotype.Service;
 

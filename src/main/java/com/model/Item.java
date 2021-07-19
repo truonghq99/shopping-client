@@ -1,4 +1,4 @@
-package com.item;
+package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -34,7 +34,7 @@ public class Item implements Serializable {
     @Column(name="price")
     protected float price;
     @Column(name="mfgDate")
-    protected String mfgDate;
+    protected Date mfgDate;
 
     public static enum Type{
         Book,Clothes,Electronics

@@ -22,14 +22,14 @@
         <fieldset>
             <h2 class=" fs-title ">Create your account</h2>
             <h3 class="fs-subtitle ">This is step 1</h3>
-            <input type="text" th:field="*{member.username}" placeholder="Username " />
+            <input type="text" th:field="*{staff.username}" placeholder="Username " />
             <input type="password" placeholder="Password" id="password" />
-            <input type="password" th:field="*{member.password}" placeholder="Confirm Password " id="confirm_password" />
+            <input type="password" th:field="*{staff.password}" placeholder="Confirm Password " id="confirm_password" />
             <h2 class="fs-title ">Personal Details</h2>
             <h3 class="fs-subtitle ">We will never sell it</h3>
-            <input type="date" th:field="*{member.dateOfBirth}" placeholder="Date of birth " />
-            <input type="text" th:field="*{member.phoneNumber}" placeholder="Phone number " />
-            <input type="email" th:field="*{member.email} " placeholder="Email " />
+            <input type="date" th:field="*{staff.dateOfBirth}" placeholder="Date of birth " />
+            <input type="text" th:field="*{staff.phoneNumber}" placeholder="Phone number " />
+            <input type="email" th:field="*{staff.email} " placeholder="Email " />
             <input type="button" name="Next" class="next action-button" value="Next" />
         </fieldset>
         <fieldset>

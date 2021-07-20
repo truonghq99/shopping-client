@@ -43,17 +43,17 @@ public class StaffController {
         model.addAttribute("password", staff.getPassword());
         return "/login";
     }
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String checkLogin(Staff staff){
-        String response=staffService.checkLogin(staff.getUsername(), staff.getPassword());
-        if(response.equals("staff")){
-            System.out.println("Login successful");
-            return "redirect:/home";
-        }else{
-            System.out.println("Login failed");
-            return "client/login";
-        }
-    }
+    // @RequestMapping(value = "/login",method = RequestMethod.POST)
+    // public String checkLogin(Staff staff){
+    //     String response=staffService.checkLogin(staff.getUsername(), staff.getPassword());
+    //     if(response.equals("staff")){
+    //         System.out.println("Login successful");
+    //         return "redirect:/home";
+    //     }else{
+    //         System.out.println("Login failed");
+    //         return "client/login";
+    //     }
+    // }
     //show home page admin
     @RequestMapping(value="/home")
     public String showHomeAdminPage(){

@@ -2,16 +2,19 @@ package com.service.serviceImpl;
 
 import java.util.List;
 
+import com.CustomStaffDetails;
 import com.model.Staff;
 import com.repository.StaffRepository;
 import com.service.StaffService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StaffServiceImpl implements StaffService {
+public class StaffServiceImpl implements StaffService, UserDetailsService {
 
     @Autowired
     private StaffRepository repo;
@@ -28,14 +31,13 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public String checkLogin(String username, String password) {
-        Staff staff = new Staff();
-        staff=(Staff) repo.findStaffByUsername(username);
-        if (password.equals(staff.getPassword())) {
-            return "staff";
-        }else{
-            return "failed";
+    public UserDetails loadUserByUsername(String username) {
+        // Kiểm tra xem user có tồn tại trong database không?
+        Staff staff = (Staff) repo.findStaffByUsername(username);
+        if (staff == null) {
+            throw new UsernameNotFoundException(username);
         }
+        return new CustomStaffDetails(staff);
     }
 
     @Override

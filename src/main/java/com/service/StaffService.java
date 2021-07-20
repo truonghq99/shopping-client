@@ -13,6 +13,4 @@ public interface StaffService {
     Staff findById(int id);
 
     List<Staff> getAllStaff();
-
-    String checkLogin(String username,String password);
 }

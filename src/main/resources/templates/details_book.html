@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/background.css">
+</head>
+
+<body>
+    <form id="msform">
+        <a th:text="${book.title}">Title</a>
+        <a th:text="${book.author}"></a>
+        <a th:text="${book.category}"></a>
+        <a th:text="${book.publisher}"></a>
+        <a th:text="${book.price}"></a>
+        <a th:text="${book.mfgDate}"></a>
+    </form>
+</body>
+
+</html>

@@ -2,6 +2,7 @@ package com.controller;
 
 import org.springframework.ui.Model;
 import com.model.Address;
+import com.model.Book;
 import com.model.Fullname;
 import com.model.Member;
 import com.model.Staff;
@@ -43,17 +44,17 @@ public class StaffController {
         model.addAttribute("password", staff.getPassword());
         return "/login";
     }
-    // @RequestMapping(value = "/login",method = RequestMethod.POST)
-    // public String checkLogin(Staff staff){
-    //     String response=staffService.checkLogin(staff.getUsername(), staff.getPassword());
-    //     if(response.equals("staff")){
-    //         System.out.println("Login successful");
-    //         return "redirect:/home";
-    //     }else{
-    //         System.out.println("Login failed");
-    //         return "client/login";
-    //     }
-    // }
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String checkLogin(Staff staff){
+        boolean response=staffService.checkLogin(staff.getUsername(), staff.getPassword());
+        if(response){
+            System.out.println("Login successful");
+            return "redirect:/home";
+        }else{
+            System.out.println("Login failed");
+            return "login";
+        }
+    }
     //show home page admin
     @RequestMapping(value="/home")
     public String showHomeAdminPage(){

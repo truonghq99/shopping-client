@@ -11,26 +11,36 @@
 </head>
 
 <body>
-    <form id="msform" th:action="@{/saveItem}" method="post" th:object="${item}">
-        <fieldset>
-            <h2 class="fs-title">Create new Item</h1>
-                <input type="text" th:field="*{title}">
-                <select class="fs-text" th:option="*{type}" placeholder="Type">
-                    <option value="Book">Book</option>
-                    <option value="Clothes">Clothes</option>
-                </select>
-                <script>
-                    type;
-                    if (onclick == "Book") {
-                        alert("book");
-                    } else if (type == "Clothes") {
-                        alert("clothes");
-                    }
-                </script>
-
-                <input type="text" th:field="*{mfgDate}" placeholder="MfgDate">
-                <input type="text" th:field="*{price}" placeholder="Price">
-        </fieldset>
+    <button type="button">Create Book</button>
+    <button type="button">Create Clothes</button>
+    <button type="button">Create Electronics</button>
+    <form id="msform" th:action="@{/saveBook}" method="post" th:object="${book}">
+        <input type="text" th:field="*{title}" placeholder="Title" />
+        <input type="text" th:field="*{author}" placeholder="Author" />
+        <input type="text" th:field="*{category}" placeholder="Category" />
+        <input type="text" th:field="*{publisher}" placeholder="Publisher" />
+        <input type="text" th:field="*{price}" placeholder="Price" />
+        <input type="date" th:field="*{mfgDate}" placeholder="MfgDate" />
+        <button type="submit" value="Submit">Create new book</button>
+    </form>
+    <form id="msform" th:action="@{/saveClothes}" method="post" th:object="${clothes}">
+        <input type="text" th:field="*{title}" placeholder="Title" />
+        <input type="text" th:field="*{typeOfClothes}" placeholder="Type" />
+        <input type="text" th:field="*{size}" placeholder="Size" />
+        <input type="text" th:field="*{price}" placeholder="Price" />
+        <input type="text" th:field="*{mfgDate}" placeholder="MfgDate" />
+        <input type="date" th:field="*{material}" placeholder="Material" />
+        <button type="submit" value="Submit">Create new clothes</button>
+    </form>
+    <form id="msform" th:action="@{/saveElectronics}" method="post" th:object="${electronics}">
+        <input type="text" th:field="*{title}" placeholder="Title" />
+        <input type="text" th:field="*{brandOfElectronics}" placeholder="Brand" />
+        <input type="text" th:field="*{typeOfElectronics}" placeholder="Type" />
+        <input type="text" th:field="*{version}" placeholder="Version" />
+        <input type="text" th:field="*{price}" placeholder="Price" />
+        <input type="date" th:field="*{mfgDate}" placeholder="MfgDate" />
+        <input type="text" th:field="*{description}" placeholder="Description" />
+        <button type="submit" value="Submit">Create new electronics</button>
     </form>
 </body>
 

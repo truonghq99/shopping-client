@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <html xmlns:th="http://www.thymeleaf.org">
-    <link rel="stylesheet" href="http://localhost:8080/css/background.css">
+    <link rel="stylesheet" href="css/background.css">
 
-    <title>List members</title>
+    <title>List staffs</title>
 </head>
 
 <body>
     <form id="msform">
-        <H1>List Member</H1>
+        <H1>List staff</H1>
         <table width="200%" padding="10" border=1>
             <tr>
                 <td>ID</td>
@@ -24,28 +24,28 @@
                 <td>Phone number</td>
                 <td>Email</td>
             </tr>
-            <tr th:each="member :${members}">
+            <tr th:each="staff :${staff}">
                 <td>
-                    <a th:text="${member.id}"></a>
+                    <a th:text="${staff.id}"></a>
                 </td>
                 <td>
-                    <a th:text="${member.username}"></a>
+                    <a th:text="${staff.username}"></a>
                 </td>
                 <td>
-                    <a th:text="${member.fullnameId.firstName}"></a>
+                    <a th:text="${staff.fullnameId.firstName}"></a>
                 </td>
                 <td>
-                    <a th:text="${member.dateOfBirth}"></a>
+                    <a th:text="${staff.dateOfBirth}"></a>
                 </td>
                 <td>
-                    <a th:text="${member.addressId.name}+', '+${member.addressId.street}
-                    +', '+${member.addressId.district}+', '+${member.addressId.city}+', '+${member.addressId.state}+', '+${member.addressId.country}"></a>
+                    <a th:text="${staff.addressId.name}+', '+${staff.addressId.street}
+                    +', '+${staff.addressId.district}+', '+${staff.addressId.city}+', '+${staff.addressId.state}+', '+${staff.addressId.country}"></a>
                 </td>
                 <td>
-                    <a th:text="${member.phoneNumber}"></a>
+                    <a th:text="${staff.phoneNumber}"></a>
                 </td>
                 <td>
-                    <a th:text="${member.email}"></a>
+                    <a th:text="${staff.email}"></a>
                 </td>
             </tr>
         </table>

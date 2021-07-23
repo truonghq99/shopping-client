@@ -21,6 +21,7 @@
         <input type="text" th:field="*{publisher}" placeholder="Publisher" />
         <input type="text" th:field="*{price}" placeholder="Price" />
         <input type="date" th:field="*{mfgDate}" placeholder="MfgDate" />
+        <input type="file" name="fileImage" id="fileImage" />
         <button type="submit" value="Submit">Create new book</button>
     </form>
     <form id="msform" th:action="@{/saveClothes}" method="post" th:object="${clothes}">

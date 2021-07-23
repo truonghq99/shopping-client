@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 
 import lombok.Data;
 
-
-
-
 @Data
 @Entity
 @DiscriminatorValue("book")

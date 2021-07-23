@@ -12,7 +12,7 @@ import com.custom.FileUploadUtil;
 import com.model.Book;
 import com.model.Clothes;
 import com.model.Electronics;
-
+import com.model.Item;
 import com.service.BookService;
 import com.service.ClothesService;
 import com.service.ElectronicsService;
@@ -93,7 +93,6 @@ public class ItemController{
                 book.setAuthor(list.get(i).getAuthor());
                 book.setPublisher(list.get(i).getPublisher());
                 book.setPrice(list.get(i).getPrice());
-                book.setMfgDate(list.get(i).getMfgDate());
                 book.setCategory(list.get(i).getCategory());
                 break;
             }
@@ -112,6 +111,12 @@ public class ItemController{
     public String deleteBook(@PathVariable("id") int id){
     	bookService.deleteBook(id);
     	return "redirect:/list-books";
+    }
+    //list item
+    @RequestMapping(value="/home/import-bill/details")
+    public String showImportBillDetails(Item item, Model model){
+        model.addAttribute("item", item);
+        return "list_item";
     }
 }
 

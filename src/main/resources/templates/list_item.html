@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="@{/css/background.css}">
     <title>Document</title>
 </head>
 
@@ -15,15 +15,17 @@
             <table width="200%" padding="10" border=1>
                 <thead>
                     <tr>
+                        <td>STT</td>
                         <td>ID</td>
                         <td>Title</td>
-                        <td>Author</td>
-                        <td>Publisher</td>
-                        <td>Detail</td>
+                        <td>Type of Item</td>
+                        <td>Price</td>
+                        <td>MFG Date</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="book : ${listbooks}">
+                    <tr th:each="item : ${listItem}">
+                        <td></td>
                         <td>
                             <a th:text="${book.id}"></a>
                         </td>
@@ -37,6 +39,9 @@
                             <a th:text="${book.publisher}"></a>
                         </td>
                         <td>
+                            <a th:text="${book.mfgDate}"></a>
+                        </td>
+                        <td>
                             <a th:href="@{'/list-books/details/'+${book.id}}">Details</a>
                         </td>
                     </tr>
@@ -46,5 +51,6 @@
         </div>
     </form>
 </body>
+<script type="text/javascript" th:src="@{/js/display}"></script>
 
 </html>

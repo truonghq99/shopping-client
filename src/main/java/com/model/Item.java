@@ -2,13 +2,16 @@ package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -41,6 +44,9 @@ public class Item implements Serializable {
     protected Date mfgDate;
     @Column(name = "image")
     protected String image;
+
+    @OneToMany(mappedBy="item",cascade = CascadeType.ALL)
+    private Collection<ImportItem> importItem;
 
     @Transient
     public String getPhotosImagePath() {

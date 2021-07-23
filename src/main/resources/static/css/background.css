@@ -27,17 +27,37 @@ body {
     position: relative;
 }
 
+.csize {
+    width: 100%;
+    padding: 100px;
+}
+
 #msform fieldset {
     background: white;
     border: 0 none;
     border-radius: 3px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
+    padding: 30px;
     box-sizing: border-box;
     width: 80%;
     margin: 0 10%;
     /*stacking fieldsets above each other*/
     position: relative;
+}
+
+
+/*button */
+
+.button {
+    width: 100px;
+    background: #27ae60;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
 }
 
 .fs-title {

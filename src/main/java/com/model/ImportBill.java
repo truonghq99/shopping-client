@@ -26,9 +26,10 @@ public class ImportBill implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+
     @Column(unique=true)
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private String idBill;
+    private int idBill;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="supplier_id",referencedColumnName = "id")

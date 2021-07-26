@@ -10,24 +10,31 @@
 </head>
 
 <body>
-    <form id="msform">
+    <form th:action="@{/reciept}" method="post">
         <fieldset>
             <label>Chọn nhà cung cấp</label>
-            <select>
-            <option th:each="supplier : ${listSupplier}" th:selected="${supplier.company}" th:text="${supplier.company}" ></option>
+            <select th:selected="*{supplier.company}">
+            <option th:each="supplier : ${listSupplier}"  th:text="*{supplier.company}" ></option>
         </select>
-
-            <input type="date" th:field="*{bill.date}" placeholder="Import Date" />
-
-            <input class="priceBill" type="text" th:field="*{bill.price}" placeholder="Price" />
-
-            <input type="text" th:field="*{bill.discount}" placeholder="Discount" />
-            <input type="date" th:field="*{bill.totalPrice}" placeholder="TotalPrice" />
-            <button type="submit" value="Submit">Create new book</button>
+            <a th:href="@{/home/create-supplier}">Add new supplier</a>
+            <br>
+            <div>
+                <label>Import Date</label>
+                <input type="date" th:field="*{bill.date}" placeholder="Import Date" />
+            </div>
+            <div>
+                <pre class="fs-title">       Price                 Discount               Total</pre>
+            </div>
+            <div>
+                <input id="priceBill" type="text" th:field="*{bill.price}" placeholder="Price" />
+                <input id="discountBill" type="text" th:field="*{bill.discount}" placeholder="Discount" />
+                <input id="totalBill" type="text" th:field="*{bill.totalPrice}" placeholder="TotalPrice" />
+                <button type="submit" value="Submit">Save</button>
+            </div>
         </fieldset><br>
         <fieldset>
-            <button type="submit" class="button">Refresh</button>
-            <table class="csize" padding="10" border=1>
+            <h1 th:align="center">List item</h1>
+            <table width="100%" padding="10" border=10>
                 <tr>
                     <td>ID</td>
                     <td>Title</td>

@@ -2,10 +2,14 @@ package com.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.model.ImportBill;
 import com.model.ImportItem;
 import com.model.Item;
 import com.model.Supplier;
+import com.service.ImportBillService;
 import com.service.ItemService;
 import com.service.SupplierService;
 
@@ -24,6 +28,8 @@ public class ImportController {
     private SupplierService supplierService;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private ImportBillService importBillService;
 
     //Form add supplier
     @RequestMapping(value="/home/create-supplier", method = RequestMethod.GET)
@@ -41,17 +47,26 @@ public class ImportController {
 
     //Create Bill
     @RequestMapping(value="/home/import-bill", method = RequestMethod.GET)
-    public String showImportBill(ImportBill importBill, Model model, Supplier supplier, Item item, ImportItem importItem){
+    public String showImportBill(ImportBill importBill, Model model, Supplier supplier, Item item, ImportItem importItem, HttpSession session){
         ArrayList<Supplier> listSupplier = new ArrayList<Supplier>();
         ArrayList<Item> listItem= new ArrayList<Item>();
         listSupplier= supplierService.findAll();
         listItem=itemService.findAll();
         model.addAttribute("listItem", listItem);
         model.addAttribute("listSupplier", listSupplier);
+        model.addAttribute("supplier", supplier);
+        session.getAttribute("supplier");
         model.addAttribute("importItem", importItem);
         model.addAttribute("bill", importBill);
         return "import_bill";
-
     }
 
+    @RequestMapping(value="/reciept", method=RequestMethod.POST)
+    public String showreciept(ImportBill importBill, Supplier supplier, HttpServletRequest request){
+        supplier=(Supplier) request.getSession().getAttribute("supplier");
+        System.out.println(supplier.toString());
+        System.out.println(importBill.toString());
+        // importBillService.createImportBill(importBill);
+        return "reciept";
+    }
 }

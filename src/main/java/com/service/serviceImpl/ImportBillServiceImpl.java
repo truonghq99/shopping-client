@@ -1,6 +1,9 @@
 package com.service.serviceImpl;
 
+import java.util.ArrayList;
+
 import com.model.ImportBill;
+import com.model.ImportItem;
 import com.repository.ImportBillRepository;
 import com.service.ImportBillService;
 
@@ -14,7 +17,12 @@ public class ImportBillServiceImpl implements ImportBillService {
     private ImportBillRepository repo;
 
     @Override
-    public ImportBill createImportBill (ImportBill importBill){
-        return repo.save(importBill);
+    public void createImportBill (ImportBill importBill){
+        repo.save(importBill);
+    }
+
+    @Override
+    public void saveDetailImport(ArrayList<ImportItem> listImportItem){
+        
     }
 }

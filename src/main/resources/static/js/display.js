@@ -1,47 +1,48 @@
 var lap = document.getElementsByClassName("for");
 
-for (let i = 0; i < lap.length; i++) {
-    const price = lap[i].querySelector(".price");
-    const quantity = lap[i].querySelector(".quantity");
-    const amount = lap[i].querySelector(".amount");
-    console.log(lap[i]);
-    quantity.addEventListener("change", (e) => {
-        const value = parseFloat(e.target.value) * parseFloat(price.innerText);
-        amount.value = value;
-    });
+for(let i=1;i<=lap.length;i++){
+	const quantity = "quantity"+i;
+	const price ="price"+i;
+	const amount ="amount"+i;
+	const discount = "discount"+i;
+	const totalPrice = "totalPrice"+i;
+   $("#"+quantity).change(function(){
+	    const quanti = $("#"+quantity).val();
+	    const pri = $("#"+price).val();
+	    var amo = parseFloat(quanti)*parseFloat(pri);
+	    console.log(amo);
+	    $("#"+amount).val(amo);
+	    const dis = $("#"+discount).val();
+	    var total = amo - amo*parseFloat(dis)/100;
+	    $("#"+totalPrice).val(total);
+	    var sum = 0;
+        $('.totalPrice').each(function(){
+           sum += parseFloat($(this).val());
+        });
+        $("#priceBill").val(sum);
+        const disBill = $("#discountBill").val();
+        var totalB = sum-sum*parseFloat(disBill)/100;
+	    $("#totalBill").val(totalB);
+	 });
+    $("#"+discount).change(function(){
+		var amo =  $("#"+amount).val();
+	    const dis = $("#"+discount).val();
+	    var total = parseFloat(amo) - parseFloat(amo)*parseFloat(dis)/100;
+	    $("#"+totalPrice).val(total);
+	    var sum = 0;
+        $('.totalPrice').each(function(){
+           sum += parseFloat($(this).val());
+        });
+        $("#priceBill").val(sum);
+        const disBill = $("#discountBill").val();
+        var totalB = sum-sum*parseFloat(disBill)/100;
+	    $("#totalBill").val(totalB);
+    }); 
 }
 
-const priceBill = document.getElementById("priceBill");
-
-
-var sum = 0;
-for (let i = 0; i < lap.length; i++) {
-    const amount = lap[i].querySelector(".amount");
-    const discount = lap[i].querySelector(".discount");
-    const totalPrice = lap[i].querySelector(".totalPrice");
-
-    let value;
-    discount.addEventListener("change", (f) => {
-        value = parseFloat(amount.value) - (parseFloat(amount.value) * parseFloat(f.target.value) / 100);
-        totalPrice.innerText = value;
-        sum += value;
-        console.log(sum);
-        priceBill.value = sum;
-
-    });
-}
-
-const discountBill = document.getElementById("discountBill");
-const totalBill = document.getElementById("totalBill");
-
-
-discountBill.addEventListener("change", (g) => {
-    const value = parseFloat(priceBill.value) - (parseFloat(priceBill.value) * parseFloat(g.target.value) / 100);
-    totalBill.value = value;
+$("#discountBill").change(function(){
+	 const priceBill = $("#priceBill").val();
+	 const discountBill = $("#discountBill").val();
+	 var totalBill = parseFloat(priceBill)-parseFloat(priceBill)*parseFloat(discountBill)/100;
+	 $("#totalBill").val(totalBill);
 });
-
-
-
-
-
-// quantity.addEventListener("change", (e) => { console.log(e.target.value) });

@@ -45,4 +45,5 @@ public class Member implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="address_id",referencedColumnName = "id" ,nullable = true)
     private Address addressId;
+    
 }

@@ -62,9 +62,8 @@ public class ImportController {
     }
 
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
-    public String showreciept(ImportBill importBill, Supplier supplier, HttpServletRequest request){
-        supplier=(Supplier) request.getSession().getAttribute("supplier");
-        System.out.println(supplier.toString());
+    public String showreciept(ImportBill importBill, Supplier supplier){
+
         System.out.println(importBill.toString());
         // importBillService.createImportBill(importBill);
         return "reciept";

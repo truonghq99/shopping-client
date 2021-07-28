@@ -60,12 +60,7 @@ public class ImportController {
     }
 
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
-<<<<<<< HEAD
-    public String showreciept(ImportBill importBill, Supplier supplier){
-
-=======
     public String showreciept(ImportBill importBill){
->>>>>>> cf04c8b40862ce4e85d6e0c89b60c04c16b54096
         System.out.println(importBill.toString());
         // importBillService.createImportBill(importBill);
         return "reciept";

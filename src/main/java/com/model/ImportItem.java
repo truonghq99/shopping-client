@@ -24,7 +24,7 @@ public class ImportItem{
     @JoinColumn(name="bill_id",referencedColumnName = "id")
     private ImportBill importBill;
     private int quantity;
-    private float price;
+    private float amount;
     private float discount;
     private float totalPrice;
     

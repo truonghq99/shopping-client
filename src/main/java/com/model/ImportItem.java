@@ -28,4 +28,7 @@ public class ImportItem{
     private float discount;
     private float totalPrice;
     
+    public ImportItem(Item item){
+        this.item=item;
+    }
 }

@@ -1,8 +1,7 @@
 package com.service.serviceImpl;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+
 
 import com.model.Book;
 import com.repository.BookRepository;
@@ -44,5 +43,11 @@ public class BookServiceImpl  implements BookService{
     	Book b= repo.getById(id);
     	if(book.getId()==b.getId())
     		repo.save(book);
+    }
+
+    @Override
+    public Book findBookById(int id) {
+        Book b=repo.getById(id);
+        return b;
     }
 }

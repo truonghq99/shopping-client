@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,9 @@ public class StaffController {
     private FullnameService fullnameService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private static final Logger log = LoggerFactory.getLogger(StaffController.class);
 
     @InitBinder
@@ -39,22 +44,21 @@ public class StaffController {
     }
 
     @GetMapping(value = "/login")
-    public String showLoginForm(Model model,Staff staff){
-        model.addAttribute("username", staff.getUsername());
-        model.addAttribute("password", staff.getPassword());
-        return "/login";
+    public String showLoginForm(){
+        return "login";
     }
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String checkLogin(Staff staff){
-        boolean response=staffService.checkLogin(staff.getUsername(), staff.getPassword());
-        if(response){
-            System.out.println("Login successful");
-            return "redirect:/home";
-        }else{
-            System.out.println("Login failed");
-            return "login";
-        }
-    }
+    // @PreAuthorize("hasAnyRole('staff')")
+    // @RequestMapping(value = "/login",method = RequestMethod.POST)
+    // public String checkLogin(Staff staff){
+    //     boolean response=staffService.checkLogin(staff.getUsername(), staff.getPassword());
+    //     if(response){
+    //         System.out.println("Login successful");
+    //         return "redirect:/home";
+    //     }else{
+    //         System.out.println("Login failed");
+    //         return "login";
+    //     }
+    // }
     //show home page admin
     @RequestMapping(value="/home")
     public String showHomeAdminPage(){
@@ -97,6 +101,9 @@ public class StaffController {
     //Save dang ki tai khoan
     @PostMapping(value="/saveInfo")
     public String saveInfo(Staff staff,Fullname fullname, Address address){
+        String password= staff.getPassword();
+        String passwordEncoder = bCryptPasswordEncoder.encode(password);
+        staff.setPassword(passwordEncoder);
         addressService.saveAddress(address);
         fullnameService.saveFullName(fullname);
         staff.setFullnameId(fullname);

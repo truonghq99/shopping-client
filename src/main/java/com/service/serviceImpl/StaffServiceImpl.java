@@ -31,15 +31,17 @@ public class StaffServiceImpl implements StaffService,UserDetailsService {
     }
      
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-        Staff staff = (Staff) repo.findStaffByUsername(username);
-         
-        if (staff == null) {
-            throw new UsernameNotFoundException("Could not find user");
-        }
-        return new CustomStaffDetails(staff);
-    }
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+		Staff staff = repo.findStaffByUsername(username);
+        CustomStaffDetails userDetails=null;
+		if(staff!=null) {
+			userDetails = new CustomStaffDetails();
+			userDetails.setStaff(staff);
+		}else {
+			throw new UsernameNotFoundException("Username does not exist with name: "+username);
+		}
+		return userDetails;
+	}
  
 
     @Override

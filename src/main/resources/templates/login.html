@@ -17,13 +17,14 @@
 
 <body>
     <!-- multistep form -->
-    <form action="#" id="msform" th:action="@{/login}" method="POST" th:object="${staff}">
+    <form action="#" id="msform" th:action="@{/login}" method="POST">
         <!-- fieldsets -->
         <fieldset>
             <h2 class=" fs-title ">Enter your account</h2>
-            <input type="text" th:field="*{username}" placeholder="Username " />
-            <input type="password" th:field="*{password}" placeholder="Password" />
+            <input type="text" name="username" id="username" placeholder="Username " />
+            <input type="password" name="password" id="password" placeholder="Password" />
             <button class="action-button" type="submit " value="Submit ">Submit</button>
+            <a th:href="@{/signup}">Sign up</a>
         </fieldset>
     </form>
 </body>

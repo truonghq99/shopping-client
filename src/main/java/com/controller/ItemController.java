@@ -1,14 +1,11 @@
 package com.controller;
 
-import java.io.File;
-import java.sql.Date;
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.Document;
 
-import com.custom.FileUploadUtil;
 import com.model.Book;
 import com.model.Clothes;
 import com.model.Electronics;
@@ -16,20 +13,21 @@ import com.model.Item;
 import com.service.BookService;
 import com.service.ClothesService;
 import com.service.ElectronicsService;
-
+import com.service.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @SessionAttributes("item")
@@ -117,6 +115,21 @@ public class ItemController{
     public String showImportBillDetails(Item item, Model model){
         model.addAttribute("item", item);
         return "list_item";
+    }
+
+    //Active and refresh
+    @RequestMapping(value="/active/{id}", method={ RequestMethod.GET,RequestMethod.PUT})
+    public String refreshActiveItem(@PathVariable int id,Model model){
+        Book book= bookService.findBookById(id);
+        book.setActive(true);
+        bookService.saveBook(book);
+        return "redirect:/list-books";
+    }
+
+    //Inventory show list item first
+    @RequestMapping(value = "/inventory")
+    public String showInventoryPage(){
+        return "inventory";
     }
 }
 

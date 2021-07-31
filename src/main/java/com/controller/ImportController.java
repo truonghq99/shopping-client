@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,23 +48,22 @@ public class ImportController {
     }
 
     //Create Bill
-    @RequestMapping(value="/home/import-bill", method = RequestMethod.GET)
-    public String showImportBill(ImportBill importBill, Model model, ArrayList<ImportItem> importItem){
+    @RequestMapping(value="/import-bill", method = RequestMethod.GET)
+    public String showImportBill(ImportBill importBill, Model model,ImportItem importItem,HttpSession session) {
         ArrayList<Supplier> listSupplier = new ArrayList<Supplier>();
         ArrayList<Item> listItem= new ArrayList<Item>();
         listSupplier= supplierService.findAll();
-        listItem=itemService.findAll();
+        listItem=itemService.findAll(); 
         model.addAttribute("listItem", listItem);
         model.addAttribute("listSupplier", listSupplier);
-        model.addAttribute("listImportItem", importItem);
+        model.addAttribute("importItem", importItem);
         model.addAttribute("bill", importBill);
         return "import_bill";
     }
 
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
-    public String showreciept(ImportBill importBill){
-        System.out.println(importBill.toString());
-        // importBillService.createImportBill(importBill);
+    public String showreciept(@ModelAttribute("importItem") ImportItem importItem){
+        System.out.println(importItem.toString());
         return "reciept";
     }
 }

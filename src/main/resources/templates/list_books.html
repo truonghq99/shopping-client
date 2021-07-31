@@ -10,41 +10,52 @@
 </head>
 
 <body>
-    <form id="msform">
-        <div>
-            <table width="200%" padding="10" border=1>
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Title</td>
-                        <td>Author</td>
-                        <td>Publisher</td>
-                        <td>Detail</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="book : ${listbooks}">
-                        <td>
-                            <a th:text="${book.id}"></a>
-                        </td>
-                        <td>
-                            <a th:text="${book.title}"></a>
-                        </td>
-                        <td>
-                            <a th:text="${book.author}"></a>
-                        </td>
-                        <td>
-                            <a th:text="${book.publisher}"></a>
-                        </td>
-                        <td>
-                            <a th:href="@{'/list-books/details/'+${book.id}}">Details</a>
-                        </td>
-                    </tr>
+</body>
+<a class="button" th:href="@{/home}">Home</a>
+<form id="msform">
+    <div>
+        <table width="200%" padding="10" border=1>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Author</td>
+                    <td>Publisher</td>
+                    <td>Active</td>
+                    <td>Option</td>
+                    <td>Detail</td>
 
-                </tbody>
-            </table>
-        </div>
-    </form>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${listbooks}">
+                    <td>
+                        <a th:text="${book.id}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${book.title}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${book.author}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${book.publisher}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${book.active}"></a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/active/'+${book.id}}">Active</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/list-books/details/'+${book.id}}">Details</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</form>
 </body>
 
 </html>

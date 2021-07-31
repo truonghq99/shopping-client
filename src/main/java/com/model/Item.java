@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,16 +42,18 @@ public class Item implements Serializable {
     protected String type;
     @Column(name = "price")
     protected float price;
+    @Column(name="sale_price")
+    protected float salePrice;
     @Column(name = "mfgDate")
     protected Date mfgDate;
-    @Column(name = "image")
-    protected String image;
+    protected boolean active=false;
 
     @OneToMany(mappedBy="item",cascade = CascadeType.ALL)
     private Collection<ImportItem> importItem;
 
+    @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
+    private Collection<StoreItem> storeItem;
+
     @Transient
-    public String getPhotosImagePath() {
-        return "/images/" + id;
-    }
+	private MultipartFile bookImage;
 }

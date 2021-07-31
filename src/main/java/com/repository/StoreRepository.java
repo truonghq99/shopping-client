@@ -1,16 +1,12 @@
 package com.repository;
 
-
-
-import com.model.Staff;
+import com.model.Store;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StaffRepository extends JpaRepository<Staff,Integer>{
+public interface StoreRepository extends JpaRepository<Store, Integer>{
     
-    Staff findStaffByUsername(String username);
-
+    Store findStoreById(int id);
 }

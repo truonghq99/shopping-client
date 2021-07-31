@@ -10,22 +10,24 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Getter;
+import lombok.Setter;
 
 
 
+@Getter
+@Setter
 public class CustomStaffDetails implements UserDetails {
+
+    private static final long serialVersionUID = 1369212895087214777L;
+
     Staff staff;
-
-
-    
-    public CustomStaffDetails(Staff staff) {
-        this.staff = staff;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(staff.getPosition());
-        System.out.println(authority);
+        System.out.println("day la: "+staff.getPosition());
+        System.out.println("authority la: "+authority);
         return Arrays.asList(authority);
     }
 

@@ -12,23 +12,16 @@ import lombok.Data;
 
 @Data
 @Entity
-public class ImportItem{
+public class StoreItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private Long id;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="item_id",referencedColumnName = "id")
+    @JoinColumn(name="item_id", referencedColumnName = "id")
     private Item item;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="bill_id",referencedColumnName = "id")
-    private ImportBill importBill;
+    @JoinColumn(name="store_id", referencedColumnName = "id")
+    private Store store;
     private int quantity;
-    private float amount;
-    private float discount;
-    private float totalPrice;
-    
-    public ImportItem(Item item){
-        this.item=item;
-    }
+    private boolean active=false;
 }

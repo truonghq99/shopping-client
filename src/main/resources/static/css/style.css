@@ -215,6 +215,7 @@ main {
     border-bottom: 1px solid #f0f0f0;
 }
 
+.button,
 .card-header button {
     background: var(--main-color);
     border-radius: 10px;
@@ -271,8 +272,21 @@ tr td:last-child {
     background: deeppink;
 }
 
+.status.Pending,
 .status.orange {
     background: orange;
+}
+
+.status.Closed {
+    background: grey;
+}
+
+.status.Repairing {
+    background: red;
+}
+
+.status.Opening {
+    background: #7FFF00;
 }
 
 .table-responsive {

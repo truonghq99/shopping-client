@@ -2,7 +2,9 @@ package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,5 +42,9 @@ public class ImportBill implements Serializable{
     private float totalPrice;
 
     @OneToMany(mappedBy="importBill",cascade = CascadeType.ALL)
-    private Collection<ImportItem> importItem;
+    private List<ImportItem> importItem=new ArrayList<>();
+
+    public void addImportItem(ImportItem importItem) {
+        this.getImportItem().add(importItem);
+    }
 }

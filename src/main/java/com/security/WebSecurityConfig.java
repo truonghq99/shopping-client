@@ -35,29 +35,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .csrf().disable();
-        http   
-            .authorizeRequests()
-            .antMatchers("/signup","/saveInfo").permitAll()
-            .and()
-            .authorizeRequests()
-            .antMatchers("/home/**").authenticated()
-            .and()
-            .authorizeRequests()
-            .antMatchers("/list-staff/**").authenticated()
-            .and()
-            .authorizeRequests()
-            .antMatchers("/import-bill/**").authenticated()
-            .and()
-            .formLogin() // Cho phép người dùng xác thực bằng form login
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/home",true)
-                .usernameParameter("username")
-                .passwordParameter("password")
+        // http   
+        //     .authorizeRequests()
+        //     .antMatchers("/signup","/saveInfo").permitAll()
+        //     .and()
+        //     .authorizeRequests()
+        //     .antMatchers("/home/**").authenticated()
+        //     .and()
+        //     .authorizeRequests()
+        //     .antMatchers("/list-staff/**").authenticated()
+        //     .and()
+        //     .authorizeRequests()
+        //     .antMatchers("/import-bill/**").authenticated()
+        //     .and()
+        //     .authorizeRequests()
+        //     .antMatchers("/inventory/**").authenticated()
+        //     .and()
+        //     .formLogin() // Cho phép người dùng xác thực bằng form login
+        //         .loginPage("/login")
+        //         .permitAll()
+        //         .defaultSuccessUrl("/home",true)
+        //         .usernameParameter("username")
+        //         .passwordParameter("password")
 
-            .and()
-            .logout() // Cho phép logout
-            .logoutUrl("/logout");
+        //     .and()
+        //     .logout() // Cho phép logout
+        //     .logoutUrl("/logout");
     }
 
 }

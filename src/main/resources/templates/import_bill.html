@@ -67,7 +67,7 @@
                         <input th:id="'quantity'+${item.id}" class="quantity" type="text" th:field="*{importItem.quantity}" />
                     </td>
                     <td>
-                        <input th:id="'amount'+${item.id}" th:value="*{importItem.amount}" readonly="readonly" />
+                        <input th:id="'amount'+${item.id}" th:field="*{importItem.amount}" readonly="readonly" />
                     </td>
                     <td>
                         <input th:id="'discount'+${item.id}" type="text" th:field="*{importItem.discount}" />

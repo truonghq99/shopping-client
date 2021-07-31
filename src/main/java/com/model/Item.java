@@ -51,6 +51,9 @@ public class Item implements Serializable {
     @OneToMany(mappedBy="item",cascade = CascadeType.ALL)
     private Collection<ImportItem> importItem;
 
+    @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
+    private Collection<StoreItem> storeItem;
+
     @Transient
 	private MultipartFile bookImage;
 }

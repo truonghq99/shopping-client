@@ -40,5 +40,5 @@ public class ImportBill implements Serializable{
     private float totalPrice;
 
     @OneToMany(mappedBy="importBill",cascade = CascadeType.ALL)
-    private Collection<ImportItem> importItem;
+    private Collection<ImportItem> importItems ;
 }

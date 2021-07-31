@@ -12,23 +12,24 @@
 <body>
     <form th:action="@{/reciept}" method="post">
         <fieldset>
+       
             <label>Chọn nhà cung cấp</label>
-            <select th:field="*{bill.supplier}">
-            <option th:each="supplier : ${listSupplier}"  th:text="*{supplier.company}" th:value="*{supplier.id}"></option>
+            <select th:field="${bill.supplier}">
+            <option th:each="supplier : ${listSuppliers}"  th:text="${supplier.company}" th:value="${supplier.id}"></option>
         </select>
             <a th:href="@{/home/create-supplier}">Add new supplier</a>
             <br>
             <div>
                 <label>Import Date</label>
-                <input type="date" th:field="*{bill.date}" placeholder="Import Date" />
+                <input type="date" th:field="${bill.date}" placeholder="Import Date" />
             </div>
             <div>
                 <pre class="fs-title">       Price                 Discount               Total</pre>
             </div>
             <div>
-                <input id="priceBill" type="text" th:field="*{bill.price}" placeholder="Price" readonly="readonly"/>
-                <input id="discountBill" type="text" th:field="*{bill.discount}" placeholder="Discount" />
-                <input id="totalBill" type="text" th:field="*{bill.totalPrice}" placeholder="TotalPrice" readonly="readonly"/>
+                <input id="priceBill" type="text" th:field="${bill.price}" placeholder="Price" readonly="readonly"/>
+                <input id="discountBill" type="text" th:field="${bill.discount}" placeholder="Discount" />
+                <input id="totalBill" type="text" th:field="${bill.totalPrice}" placeholder="TotalPrice" readonly="readonly"/>
                 <button type="submit" value="Submit">Save</button>
             </div>
         </fieldset><br>
@@ -47,7 +48,7 @@
                     <td>Total Price</td>
                 </tr>
 
-                <tr class="for" th:each="item : ${listItem}">
+                <tr class="for" th:each="item : ${listItems}">
                     <td>
                         <a th:text="${item.id}"></a>
                     </td>
@@ -64,18 +65,17 @@
                         <a th:text="${item.mfgDate}"></a>
                     </td>
                     <td>
-                        <input th:id="'quantity'+${item.id}" class = "quantity" type="text" th:field="*{importItem.quantity}" />
+                        <input th:id="'quantity'+${item.id}" class = "quantity" type="text" th:field="${importItem.quantity}" />
                     </td>
                     <td>
-                        <input th:id="'amount'+${item.id}" th:value="*{importItem.amount}" readonly="readonly" />
+                        <input th:id="'amount'+${item.id}" th:field="${importItem.amount}" readonly="readonly" />
                     </td>
                     <td>
-                        <input th:id="'discount'+${item.id}" type="text" th:field="*{importItem.discount}" />
+                        <input th:id="'discount'+${item.id}" th:field="*{importItem.discount}"type="text"  />
                     </td>
                     <td>
-                        <input th:id="'totalPrice'+${item.id}" class = "totalPrice" th:field="*{importItem.totalPrice}" readonly="readonly"/>
+                        <input th:id="'totalPrice'+${item.id}" class = "totalPrice"  th:field="*{importItem.totalPrice}" readonly="readonly"/>
                     </td>
-
                 </tr>
                 </tr>
             </table>

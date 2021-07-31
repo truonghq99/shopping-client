@@ -47,21 +47,22 @@ public class ImportController {
 
     //Create Bill
     @RequestMapping(value="/home/import-bill", method = RequestMethod.GET)
-    public String showImportBill(ImportBill importBill, Model model, ArrayList<ImportItem> importItem){
-        ArrayList<Supplier> listSupplier = new ArrayList<Supplier>();
-        ArrayList<Item> listItem= new ArrayList<Item>();
-        listSupplier= supplierService.findAll();
-        listItem=itemService.findAll();
-        model.addAttribute("listItem", listItem);
-        model.addAttribute("listSupplier", listSupplier);
-        model.addAttribute("listImportItem", importItem);
+    public String showImportBill(ImportBill importBill, Model model,ImportItem importItem){
+    	
+        ArrayList<Supplier> listSuppliers = new ArrayList<Supplier>();   //danh sach nha cung cap
+        ArrayList<Item> listItems= new ArrayList<Item>();            //danh sach item
+        listSuppliers= supplierService.findAll();
+        listItems=itemService.findAll();
+        model.addAttribute("listItems", listItems);
+        model.addAttribute("listSuppliers", listSuppliers);
+        model.addAttribute("importItem", importItem);
         model.addAttribute("bill", importBill);
         return "import_bill";
     }
 
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
-    public String showreciept(ImportBill importBill){
-        System.out.println(importBill.toString());
+    public String showreciept(@ModelAttribute("importItem") ImportItem importItem){
+        System.out.println(importItem.toString());
         // importBillService.createImportBill(importBill);
         return "reciept";
     }

@@ -64,7 +64,6 @@ public class ImportController {
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
     public String showreciept(@ModelAttribute("importItem") ImportItem importItem){
         System.out.println(importItem.toString());
-        // importBillService.createImportBill(importBill);
         return "reciept";
     }
 }

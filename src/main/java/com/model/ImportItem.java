@@ -7,32 +7,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class ImportItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int quantity=0;
-    private float amount=0;
     private float discount=0;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="item_id",referencedColumnName = "id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="item_id")
     private Item item;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="bill_id",referencedColumnName = "id")
+    @JoinColumn(name="bill_id",referencedColumnName = "id_bill")
     private ImportBill importBill;
-    private float totalPrice=0;
-	
-    
-    public ImportItem(Item item){
-        this.item=item;
-        this.amount=0;
-        this.discount=0;
-        this.quantity=0;
-        this.totalPrice=0;
-    }
+    private int quantity=0;
+    private float amount=0;
+    private float discountItem=0;
+    private float totalPriceItem=0;
 }

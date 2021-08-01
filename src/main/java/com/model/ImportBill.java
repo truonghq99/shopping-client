@@ -3,7 +3,6 @@ package com.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -29,9 +28,8 @@ public class ImportBill implements Serializable{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique=true)
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int idBill;
+    @Column(name="id_bill", unique=true)
+    private String idBill;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="supplier_id",referencedColumnName = "id")
@@ -42,9 +40,5 @@ public class ImportBill implements Serializable{
     private float totalPrice;
 
     @OneToMany(mappedBy="importBill",cascade = CascadeType.ALL)
-    private List<ImportItem> importItems=new ArrayList<>();
-    
-    public void addImportItem(ImportItem importItem) {
-    	this.importItems.add(importItem);
-    }
+    private List<ImportItem> listImportItem=new ArrayList<>();
 }

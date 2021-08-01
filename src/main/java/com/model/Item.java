@@ -48,6 +48,9 @@ public class Item implements Serializable {
     protected Date mfgDate;
     protected boolean active=false;
 
+    @OneToOne(mappedBy="item")
+    private ImportItem importedItem;
+    
     @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
     private Collection<StoreItem> storeItem;
 

@@ -80,18 +80,20 @@ public class ImportController {
 		ArrayList<Item> listItem = new ArrayList<Item>();
 		listItem = itemService.findAll();
 		ArrayList<ImportItem> listImportItem = new ArrayList<ImportItem>();
+		System.out.println(importBill.getListImportItem().size());
 		for (int i = 0; i < importBill.getListImportItem().size(); i++) {
 			importBill.getListImportItem().get(i).setItem(listItem.get(i));
+			
+			System.out.println(importBill.getListImportItem().get(i).getTotalPriceItem());
 			if (importBill.getListImportItem().get(i).getTotalPriceItem() > 0) {
 				importBill.getListImportItem().get(i).setImportBill(importBill);
+				
 			}
 			else {
 				importBill.getListImportItem().remove(i);
 			}
-
 		}
-
-		importBillService.createImportBill(importBill);
+		// importBillService.createImportBill(importBill);
 		return "reciept";
 	}
 

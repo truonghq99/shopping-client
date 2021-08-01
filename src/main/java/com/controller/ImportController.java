@@ -1,8 +1,12 @@
 package com.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,9 +22,11 @@ import com.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -49,22 +55,35 @@ public class ImportController {
 
     //Create Bill
     @RequestMapping(value="/import-bill", method = RequestMethod.GET)
-    public String showImportBill(ImportBill importBill, Model model,ImportItem importItem,HttpSession session) {
+    public String showImportBill(ImportBill importBill, Model model,HttpSession session) {     //dung requestparam
         ArrayList<Supplier> listSupplier = new ArrayList<Supplier>();
         ArrayList<Item> listItem= new ArrayList<Item>();
         listSupplier= supplierService.findAll();
-        listItem=itemService.findAll(); 
-        model.addAttribute("listItem", listItem);
+        listItem=itemService.findAll();
+        ArrayList<ImportItem> listImportItem = new ArrayList<ImportItem>();
+        for(int i=0; i<listItem.size(); i++){
+            ImportItem ii=new ImportItem();
+            ii.setItem(listItem.get(i));
+            listImportItem.add(ii);
+        }
+        importBill.setListImportItem(listImportItem);
         model.addAttribute("listSupplier", listSupplier);
-        model.addAttribute("importItem", importItem);
         model.addAttribute("bill", importBill);
         return "import_bill";
     }
 
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
-    public String showreciept(@ModelAttribute("importItem") ImportItem importItem){
-        System.out.println(importItem.toString());
+    public String showreciept(@ModelAttribute("bill") ImportBill importBill,Model model) { 
+        Date date= new Date();
+        SimpleDateFormat ft= new SimpleDateFormat("yyMMddhhmmssMs");
+        String id= ft.format(date);
+        importBill.setIdBill(id);
+        for(int i=0;i<importBill.getListImportItem().size();i++){
+            importBill.getListImportItem().get(i).setImportBill(importBill);
+        } 
         // importBillService.createImportBill(importBill);
         return "reciept";
     }
+
+  
 }

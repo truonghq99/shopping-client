@@ -28,4 +28,11 @@ public class ImportItem{
     private float totalPrice=0;
 	
     
+    public ImportItem(Item item){
+        this.item=item;
+        this.amount=0;
+        this.discount=0;
+        this.quantity=0;
+        this.totalPrice=0;
+    }
 }

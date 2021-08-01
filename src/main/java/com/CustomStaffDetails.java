@@ -1,57 +1,64 @@
-// package com;
-// import java.util.Collection;
-// import java.util.Collections;
+package com;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
-// import com.model.Staff;
-
-
-// import org.springframework.security.core.GrantedAuthority;
-// import org.springframework.security.core.authority.SimpleGrantedAuthority;
-// import org.springframework.security.core.userdetails.UserDetails;
-
-// import lombok.AllArgsConstructor;
-// import lombok.Data;
+import com.model.Staff;
 
 
-// @Data
-// @AllArgsConstructor
-// public class CustomStaffDetails implements UserDetails {
-//     Staff staff;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-//     @Override
-//     public Collection<? extends GrantedAuthority> getAuthorities() {
-//         // Mặc định mình sẽ để tất cả là ROLE_USER. Để demo cho đơn giản.
-//         return Collections.singleton(new SimpleGrantedAuthority("staff"));
-//     }
+import lombok.Getter;
+import lombok.Setter;
 
-//     @Override
-//     public String getPassword() {
-//         return staff.getPassword();
-//     }
 
-//     @Override
-//     public String getUsername() {
-//         return staff.getUsername();
-//     }
 
-//     @Override
-//     public boolean isAccountNonExpired() {
-//         return true;
-//     }
+@Getter
+@Setter
+public class CustomStaffDetails implements UserDetails {
 
-//     @Override
-//     public boolean isAccountNonLocked() {
-//         return true;
-//     }
+    private static final long serialVersionUID = 1369212895087214777L;
 
-//     @Override
-//     public boolean isCredentialsNonExpired() {
-//         return true;
-//     }
+    Staff staff;
 
-//     @Override
-//     public boolean isEnabled() {
-//         return true;
-//     }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(staff.getPosition());
+        System.out.println("day la: "+staff.getPosition());
+        System.out.println("authority la: "+authority);
+        return Arrays.asList(authority);
+    }
 
-// }
+    @Override
+    public String getPassword() {
+        return staff.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return staff.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+}

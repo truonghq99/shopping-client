@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,24 +48,26 @@ public class ImportController {
     }
 
     //Create Bill
-    @RequestMapping(value="/home/import-bill", method = RequestMethod.GET)
-    public String showImportBill(ImportBill importBill, Model model,ImportItem importItem){
-    	
-        ArrayList<Supplier> listSuppliers = new ArrayList<Supplier>();   //danh sach nha cung cap
-        ArrayList<Item> listItems= new ArrayList<Item>();            //danh sach item
+    @RequestMapping(value="/import-bill", method = RequestMethod.GET)
+    public String showImportBill(ImportBill importBill, Model model,HttpSession session) {
+        ArrayList<Supplier> listSuppliers = new ArrayList<Supplier>();
+        ArrayList<Item> listItems= new ArrayList<Item>();
+        ArrayList<ImportItem> listImportItems= new ArrayList<ImportItem>();
         listSuppliers= supplierService.findAll();
-        listItems=itemService.findAll();
-        model.addAttribute("listItems", listItems);
+        listItems=itemService.findAll(); 
+        for(int i =0 ;i<listItems.size();i++) {
+        	ImportItem importItem = new ImportItem(listItems.get(i));
+        	listImportItems.add(importItem);
+        }
         model.addAttribute("listSuppliers", listSuppliers);
-        model.addAttribute("importItem", importItem);
+        model.addAttribute("listImportItems", listImportItems);
         model.addAttribute("bill", importBill);
         return "import_bill";
     }
 
     @RequestMapping(value="/reciept", method=RequestMethod.POST)
-    public String showreciept(@ModelAttribute("importItem") ImportItem importItem){
-        System.out.println(importItem.toString());
-        // importBillService.createImportBill(importBill);
+    public String showreciept(@ModelAttribute("bill") ImportBill bill){
+        System.out.println(bill.toString());
         return "reciept";
     }
 }

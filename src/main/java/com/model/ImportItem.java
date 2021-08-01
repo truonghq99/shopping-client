@@ -8,10 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class ImportItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +25,11 @@ public class ImportItem{
     @JoinColumn(name="item_id",referencedColumnName = "id")
     private Item item;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="bill_id",referencedColumnName = "id")
+    @JoinColumn(name="bill_id",referencedColumnName = "id_bill")
     private ImportBill importBill;
-    private int quantity;
-    private float amount;
-    private float discount;
-    private float totalPrice;
+    private int quantity=0;
+    private float amount=0;
+    private float discountItem=0;
+    private float totalPriceItem=0;
     
-    public ImportItem(Item item){
-        this.item=item;
-    }
 }

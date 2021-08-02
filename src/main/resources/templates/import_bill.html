@@ -12,7 +12,7 @@
 <body>
     <form th:action="@{/reciept}" method="post" th:object="${bill}">
         <fieldset>
-       
+
             <label>Chọn nhà cung cấp</label>
             <select th:field="*{supplier}">
             <option th:each="supplier : ${listSupplier}"  th:text="${supplier.company}" th:value="${supplier.id}"></option>
@@ -51,7 +51,7 @@
                 <tr class="for" th:each="importItem, stat : *{listImportItem}">
 
                     <td>
-                        <a th:text="${importItem.item.id}" th:field="*{listImportItem[__${stat.index}__].item.id}" th:value="${importItem.item.id}"></a>
+                        <a class="id" name="2" value="3" th:text="${importItem.item.id}" th:field="*{listImportItem[__${stat.index}__].item.id}" th:value="${importItem.item.id}"></a>
                     </td>
                     <td>
                         <a th:text="${importItem.item.title}" th:field="*{listImportItem[__${stat.index}__].item.title}"></a>
@@ -63,7 +63,7 @@
                         <input th:id="'price'+${importItem.item.id}" class="price" th:value="${importItem.item.price}" th:field="*{listImportItem[__${stat.index}__].item.price}" style="width:40px" />
                     </td>
                     <td>
-                        <a th:text="${importItem.item.mfgDate}" th:field="*{listImportItem[__${stat.index}__].item.mfgDate}" ></a>
+                        <a th:text="${importItem.item.mfgDate}" th:field="*{listImportItem[__${stat.index}__].item.mfgDate}"></a>
                     </td>
                     <td>
                         <input th:id="'quantity'+${importItem.item.id}" class="quantity" type="text" th:field="*{listImportItem[__${stat.index}__].quantity}" />
@@ -84,6 +84,6 @@
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
-<script type="text/javascript " th:src="@{/js/display.js} "></script>
+<script type="text/javascript " th:src="@{/js/display.js}"></script>
 
 </html>

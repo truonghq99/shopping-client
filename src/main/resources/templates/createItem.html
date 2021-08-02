@@ -6,12 +6,12 @@
     <html xmlns:th="http://www.thymeleaf.org">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
     <title>Create new Item</title>
 </head>
 
 <body>
-    <button type="button">Create Boaok</button>
+    <button type="button">Create Book</button>
     <button type="button">Create Clothes</button>
     <button type="button">Create Electronics</button>
     <form id="msform" th:action="@{/saveBook}" method="post" th:object="${book}">

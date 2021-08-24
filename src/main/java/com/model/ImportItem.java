@@ -21,13 +21,15 @@ public class ImportItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private float discount=0;
+
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="item_id")
     private Item item;
-    @ManyToOne(cascade=CascadeType.ALL)
+
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="bill_id",referencedColumnName = "id_bill")
     private ImportBill importBill;
+    
     private int quantity=0;
     private float amount=0;
     private float discountItem=0;

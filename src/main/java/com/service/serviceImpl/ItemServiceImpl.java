@@ -27,4 +27,13 @@ public class ItemServiceImpl implements ItemService{
         return list;
     }
 
+    @Override
+    public void updateQuantityItem(int id, int quantity) {
+        if(repo.existsById(id)){
+            Item i = repo.getById(id);
+            int newQuantity= i.getQuantity()+quantity;
+            i.setQuantity(newQuantity);
+            repo.save(i);
+        }
+    }
 }

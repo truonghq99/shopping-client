@@ -54,47 +54,39 @@ public class ImportController {
 
 	// Create Bill
 	@RequestMapping(value = "/import-bill", method = RequestMethod.GET)
-	public String showImportBill(ImportBill importBill, Model model, HttpSession session) { // dung requestparam
-		ArrayList<Supplier> listSupplier = new ArrayList<Supplier>();
-		ArrayList<Item> listItem = new ArrayList<Item>();
-		listSupplier = supplierService.findAll();
-		listItem = itemService.findAll();
-		ArrayList<ImportItem> listImportItem = new ArrayList<ImportItem>();
-		for (int i = 0; i < listItem.size(); i++) {
-			ImportItem ii = new ImportItem();
-			ii.setItem(listItem.get(i));
-			listImportItem.add(ii);
+	public String showImportBill(ImportBill importBill, Model model) { // dung requestparam
+		ArrayList<Item> items= itemService.findAll();
+		ArrayList<Supplier> suppliers = supplierService.findAll();
+		for(int i=0;i<items.size();i++){
+			ImportItem importItem = new ImportItem();
+			importItem.setItem(items.get(i));
+			importBill.getListImportItem().add(importItem);
 		}
-		importBill.setListImportItem(listImportItem);
-		model.addAttribute("listSupplier", listSupplier);
-		model.addAttribute("bill", importBill);
+		model.addAttribute("listSupplier", suppliers);
+		model.addAttribute("importBill", importBill);
 		return "import_bill";
 	}
 
-	@RequestMapping(value = "/reciept", method = RequestMethod.POST)
-	public String showreciept(@ModelAttribute("bill") ImportBill importBill, Model model) {
-		Date date = new Date();
-		SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
-		String id = ft.format(date);
-		importBill.setIdBill(id);
-		ArrayList<Item> listItem = new ArrayList<Item>();
-		listItem = itemService.findAll();
-		ArrayList<ImportItem> listImportItem = new ArrayList<ImportItem>();
-		System.out.println(importBill.getListImportItem().size());
-		for (int i = 0; i < importBill.getListImportItem().size(); i++) {
-			importBill.getListImportItem().get(i).setItem(listItem.get(i));
-			
-			System.out.println(importBill.getListImportItem().get(i).getTotalPriceItem());
-			if (importBill.getListImportItem().get(i).getTotalPriceItem() > 0) {
-				importBill.getListImportItem().get(i).setImportBill(importBill);
-				
+	@RequestMapping(value="/reciept" , method = RequestMethod.POST)
+    public String saveReciept(ImportBill reciept) {
+        SimpleDateFormat sdf= new SimpleDateFormat("yyMMddhhmmssMs");
+        Date date= new Date();
+        String idBill= sdf.format(date);
+        reciept.setIdBill(idBill);
+		
+        for(int i=0;i<reciept.getListImportItem().size();i++) {
+            if (reciept.getListImportItem().get(i).getTotalPriceItem() <= 0.0) {
+                reciept.getListImportItem().remove(i);
+                i--;
+            }else{
+			System.out.println(reciept.getListImportItem().get(i).getItem());
+			itemService.updateQuantityItem(
+				reciept.getListImportItem().get(i).getItem().getId(),
+				reciept.getListImportItem().get(i).getQuantity());
 			}
-			else {
-				importBill.getListImportItem().remove(i);
-			}
-		}
-		// importBillService.createImportBill(importBill);
-		return "reciept";
-	}
+        }
+        // importBillService.createImportBill(reciept);
+        return "home_page";
+    }
 
 }

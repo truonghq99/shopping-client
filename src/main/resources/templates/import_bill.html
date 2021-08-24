@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form th:action="@{/reciept}" method="post" th:object="${bill}">
+    <form th:action="@{/reciept}" method="post" th:object="${importBill}">
         <fieldset>
 
             <label>Chọn nhà cung cấp</label>
@@ -27,9 +27,9 @@
                 <pre class="fs-title">       Price                 Discount               Total</pre>
             </div>
             <div>
-                <input id="priceBill" type="text" th:field="*{price}" placeholder="Price" readonly="readonly" />
-                <input id="discountBill" type="text" th:field="*{discount}" placeholder="Discount" />
-                <input id="totalBill" type="text" th:field="*{totalPrice}" placeholder="TotalPrice" readonly="readonly" />
+                <input id="billPrice" type="text" th:field="*{price}" placeholder="Price" readonly="readonly" />
+                <input id="billDiscount" type="text" th:field="*{discount}" placeholder="Discount" />
+                <input id="billTotal" type="text" th:field="*{totalPrice}" placeholder="TotalPrice" readonly="readonly" />
                 <button type="submit" value="Submit">Save</button>
             </div>
         </fieldset><br>
@@ -48,22 +48,26 @@
                     <td>Total Price</td>
                 </tr>
 
-                <tr class="for" th:each="importItem, stat : *{listImportItem}">
+                <tr class="for" th:each="importItem,stat : *{listImportItem}">
 
                     <td>
-                        <a class="id" name="2" value="3" th:text="${importItem.item.id}" th:field="*{listImportItem[__${stat.index}__].item.id}" th:value="${importItem.item.id}"></a>
+                        <a th:id="${importItem.item.id}" th:name="${stat.index}" th:text="*{listImportItem[__${stat.index}__].item.id}"></a>
+                        <input type="hidden" th:field="*{listImportItem[__${stat.index}__].item.id}">
                     </td>
                     <td>
-                        <a th:text="${importItem.item.title}" th:field="*{listImportItem[__${stat.index}__].item.title}"></a>
+                        <a th:text="*{listImportItem[__${stat.index}__].item.title}"></a>
+                        <!-- <input type="hidden" th:field="*{listImportItem[__${stat.index}__].item.title}"> -->
                     </td>
                     <td>
-                        <a th:text="${importItem.item.type}" th:field="*{listImportItem[__${stat.index}__].item.type}"></a>
+                        <a th:text="*{listImportItem[__${stat.index}__].item.type}"></a>
+                        <!-- <input type="hidden" th:field="*{listImportItem[__${stat.index}__].item.type}"> -->
                     </td>
                     <td>
                         <input th:id="'price'+${importItem.item.id}" class="price" th:value="${importItem.item.price}" th:field="*{listImportItem[__${stat.index}__].item.price}" style="width:40px" />
                     </td>
                     <td>
-                        <a th:text="${importItem.item.mfgDate}" th:field="*{listImportItem[__${stat.index}__].item.mfgDate}"></a>
+                        <a th:text="${importItem.item.mfgDate}"></a>
+                        <!-- <input th:field="*{listImportItem[__${stat.index}__].item.mfgDate}"> -->
                     </td>
                     <td>
                         <input th:id="'quantity'+${importItem.item.id}" class="quantity" type="text" th:field="*{listImportItem[__${stat.index}__].quantity}" />

@@ -59,7 +59,7 @@ public class StaffController {
     //         return "login";
     //     }
     // }
-    //show home page admin
+    // show home page admin
     @RequestMapping(value="/home")
     public String showHomeAdminPage(){
         return "home_page";

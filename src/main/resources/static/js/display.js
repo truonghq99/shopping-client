@@ -1,51 +1,60 @@
 var lap = document.getElementsByClassName("for");
-const id = document.querySelector(".id");
+var sum = 0;
 
-for (let i = 1; i <= lap.length; i++) {
-    const quantity = "quantity" + i;
-    const price = "price" + i;
-    const amount = "amount" + i;
-    const discount = "discount" + i;
-    const totalPrice = "totalPrice" + i;
+for (let i = 0; i < lap.length; i++) {
+    const elements = document.getElementsByName(i);
+    const idItem = elements[0].getAttribute('id');
+    const quantity = 'quantity' + idItem;
+    const price = "price" + idItem;
+    const amount = "amount" + idItem;
+    const discount = "discount" + idItem;
+    const totalPrice = "totalPrice" + idItem;
+    console.log(quantity);
     $("#" + quantity).change(function() {
-        const quanti = $("#" + quantity).val();
-        const pri = $("#" + price).val();
-        console.log(pri);
-        var amo = parseFloat(quanti) * parseFloat(pri);
-        console.log(amo);
-        $("#" + amount).val(amo);
-        const dis = $("#" + discount).val();
-        var total = amo - amo * parseFloat(dis) / 100;
-        $("#" + totalPrice).val(total);
+        const newQuantity = $("#" + quantity).val();
+        const newPrice = $("#" + price).val();
+        var newAmount = parseFloat(newQuantity) * parseFloat(newPrice);
+        $("#" + amount).val(newAmount);
+        const newDiscount = $("#" + discount).val();
+        const newTotalPrice = parseFloat(newAmount) - parseFloat(newAmount * newDiscount / 100);
+        $("#" + totalPrice).val(newTotalPrice);
         var sum = 0;
-        $('.totalPrice').each(function() {
+        $(".totalPrice").each(function() {
             sum += parseFloat($(this).val());
         });
-        $("#priceBill").val(sum);
-        const disBill = $("#discountBill").val();
-        var totalB = sum - sum * parseFloat(disBill) / 100;
-        $("#totalBill").val(totalB);
-        console.log(amount);
+        $("#billPrice").val(sum);
+        const discountBill = $("#billDiscount").val();
+        var totalBill = sum - sum * parseFloat(discountBill) / 100;
+        $("#billTotal").val(totalBill);
+
+
     });
+
     $("#" + discount).change(function() {
-        var amo = $("#" + amount).val();
-        const dis = $("#" + discount).val();
-        var total = parseFloat(amo) - parseFloat(amo) * parseFloat(dis) / 100;
-        $("#" + totalPrice).val(total);
+        var newAmount = $("#" + amount).val();
+        const newDiscount = parseFloat($("#" + discount).val());
+        console.log(typeof newDiscount)
+        if (newDiscount < 0 || newDiscount > 100) {
+            alert("Wrong discount number");
+        }
+        var newTotal = parseFloat(newAmount) - parseFloat(newDiscount) * parseFloat(newAmount) / 100;
+        $("#" + totalPrice).val(newTotal);
         var sum = 0;
-        $('.totalPrice').each(function() {
+        $(".totalPrice").each(function() {
             sum += parseFloat($(this).val());
         });
-        $("#priceBill").val(sum);
-        const disBill = $("#discountBill").val();
-        var totalB = sum - sum * parseFloat(disBill) / 100;
-        $("#totalBill").val(totalB);
+        $("#billPrice").val(sum);
+        const billDiscount = $("#billDiscount").val();
+        var totalBill = sum - sum * parseFloat(billDiscount) / 100;
+        $("#billTotal").val(totalBill);
+
     });
+
 }
 
-$("#discountBill").change(function() {
-    const priceBill = $("#priceBill").val();
-    const discountBill = $("#discountBill").val();
-    var totalBill = parseFloat(priceBill) - parseFloat(priceBill) * parseFloat(discountBill) / 100;
-    $("#totalBill").val(totalBill);
+$("#billDiscount").change(function() {
+    const billPrice = $("#billPrice").val();
+    const billDiscount = $("#billDiscount").val();
+    var billTotal = parseFloat(billPrice) - parseFloat(billDiscount) * parseFloat(billPrice) / 100;
+    $("#billTotal").val(billTotal);
 });

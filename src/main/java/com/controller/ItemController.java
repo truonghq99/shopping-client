@@ -81,8 +81,8 @@ public class ItemController{
 
     }
     @RequestMapping(value="list-books/details/{id}")
-    public String showDetailBook(@PathVariable int id, HttpServletRequest request, Model model){
-        ArrayList<Book> list= (ArrayList<Book>) request.getSession().getAttribute("listbooks");
+    public String showDetailBook(@PathVariable int id,HttpSession session,HttpServletRequest request, Model model){
+        ArrayList<Book> list= (ArrayList<Book>) session.getAttribute("listbooks");
         Book book= new Book();
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId()==id){
@@ -98,6 +98,8 @@ public class ItemController{
         model.addAttribute("book", book);
         return "details_book";
     }
+
+
     @RequestMapping(value="/updateBook",method = { RequestMethod.GET, RequestMethod.PUT })
     public String updateBook(@ModelAttribute("book") Book book) {
     	System.out.println(book.getId());

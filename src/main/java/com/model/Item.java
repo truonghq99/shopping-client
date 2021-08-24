@@ -2,7 +2,9 @@ package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,16 +45,18 @@ public class Item implements Serializable {
     protected String type;
     @Column(name = "price")
     protected float price;
+
+    private int quantity=0;
    
     @Column(name = "mfgDate")
     protected Date mfgDate;
     protected boolean active=false;
 
-    @OneToOne(mappedBy="item")
-    private ImportItem importedItem;
+    @OneToOne(mappedBy="item", cascade = CascadeType.ALL)
+    private ImportItem importItem;
     
     @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
-    private Collection<StoreItem> storeItem;
+    private List<StoreItem> storeItem = new ArrayList<>();
 
     @Transient
 	private MultipartFile bookImage;

@@ -79,13 +79,13 @@ public class ImportController {
                 reciept.getListImportItem().remove(i);
                 i--;
             }else{
-			System.out.println(reciept.getListImportItem().get(i).getItem());
-			itemService.updateQuantityItem(
+			itemService.updateQuantityItemImport(
 				reciept.getListImportItem().get(i).getItem().getId(),
 				reciept.getListImportItem().get(i).getQuantity());
+				reciept.getListImportItem().get(i).setImportBill(reciept);
 			}
         }
-        // importBillService.createImportBill(reciept);
+        importBillService.createImportBill(reciept);
         return "home_page";
     }
 

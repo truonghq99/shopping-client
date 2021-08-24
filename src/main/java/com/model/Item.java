@@ -52,11 +52,11 @@ public class Item implements Serializable {
     protected Date mfgDate;
     protected boolean active=false;
 
-    @OneToOne(mappedBy="item", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy="item", cascade = CascadeType.MERGE)
     private ImportItem importItem;
     
     @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
-    private List<StoreItem> storeItem = new ArrayList<>();
+    private List<ExportItem> storeItem = new ArrayList<>();
 
     @Transient
 	private MultipartFile bookImage;

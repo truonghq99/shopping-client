@@ -3,9 +3,8 @@ package com.controller;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 import com.model.Store;
-import com.model.StoreItem;
+import com.model.ExportItem;
 import com.service.ItemService;
-import com.service.StoreItemService;
 import com.service.StoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,7 @@ public class StoreController {
     
     @Autowired
     private StoreService storeService;
-    @Autowired
-    private StoreItemService storeItemService;
+
 
     @GetMapping(value="/inventory/stores")
     public String showStorePage(Store store, Model model, HttpSession session) {
@@ -40,8 +38,7 @@ public class StoreController {
     }
     @GetMapping(value="/inventory/stores/details/{id}")
     public String showDetailsStore(@PathVariable("id")int id, Model model){
-        ArrayList<StoreItem> list=storeItemService.getAllItemInStore(id);
-        model.addAttribute("listItem", list);
+   
         return "warehouse";
     }
 

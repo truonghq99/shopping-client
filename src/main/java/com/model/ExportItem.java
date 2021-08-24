@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImportItem{
+public class ExportItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,11 +27,10 @@ public class ImportItem{
     private Item item;
 
     @ManyToOne(cascade=CascadeType.MERGE)
-    @JoinColumn(name="bill_id",referencedColumnName = "id_bill")
-    private ImportBill importBill;
+    @JoinColumn(name="bill_id",referencedColumnName = "bill_id")
+    private ExportBill exportBill;
     
     private int quantity=0;
-    private float amount=0;
-    private float discountItem=0;
+
     private float totalPriceItem=0;
 }

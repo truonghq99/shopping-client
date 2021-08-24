@@ -109,7 +109,6 @@
                                                 <td>Sales</td>
                                                 <td>Status</td>
                                                 <td>Details</td>
-                                                <td>Inventory</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -127,14 +126,11 @@
                                                     <span th:text="${store.id}"></span>
                                                 </td>
                                                 <td>
-                                                    <span class="status orange"></span>
+                                                    <span class="status" th:classappend="${store.status}"></span>
                                                     <span th:text="${store.status}"></span>
                                                 </td>
                                                 <td>
                                                     <a class="button" th:href="@{'/inventory/stores/details/'+${store.id}}">Details</a>
-                                                </td>
-                                                <td>
-                                                    <a class="button" th:href="@{'/inventory/stores/inventory/'+${store.id}}">Inventory</a>
                                                 </td>
                                             </tr>
                                         </tbody>

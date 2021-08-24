@@ -9,5 +9,7 @@ public interface ItemService {
 
     ArrayList<Item> findAll();
 
-    void updateQuantityItem(int id , int quantity);
+    void updateQuantityItemImport(int id , int quantity);
+
+    boolean updateQuantityItemExport(int id , int quantity);
 }

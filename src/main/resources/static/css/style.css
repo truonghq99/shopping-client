@@ -277,6 +277,7 @@ tr td:last-child {
     background: orange;
 }
 
+.status.false,
 .status.Closed {
     background: grey;
 }
@@ -285,6 +286,7 @@ tr td:last-child {
     background: red;
 }
 
+.status.true,
 .status.Opening {
     background: #7FFF00;
 }

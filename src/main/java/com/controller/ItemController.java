@@ -23,7 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,9 +32,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("item")
 public class ItemController{
     @Autowired
-    private BookService bookService;
+    private ItemService itemService;
     @Autowired
     private ClothesService clothesService;
+    @Autowired
+    private BookService bookService;
     @Autowired
     private ElectronicsService electronicsService;
 
@@ -72,12 +73,12 @@ public class ItemController{
         return "home_page";
     }
 
-    @RequestMapping(value="/list-books")
-    public String showListBooks(Book book,Model model, HttpSession session){
-        ArrayList<Book> list= bookService.getAllBook();
-        model.addAttribute("listbooks", list);
-        session.setAttribute("listbooks", list);
-        return "list_books";
+    @RequestMapping(value="/inventory/list-item")
+    public String showListBooks(Item item,Model model, HttpSession session){
+        ArrayList<Item> list= itemService.findAll();
+        model.addAttribute("listItem", list);
+        session.setAttribute("listItem", list);
+        return "List/list-item";
 
     }
     @RequestMapping(value="list-books/details/{id}")

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -23,6 +24,7 @@ public class Store {
     private Date openDate;
     private String status;
 
-    @OneToMany(mappedBy="store", cascade = CascadeType.ALL)
-    private Collection<StoreItem> storeItem;
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private Collection<ExportBill> exportBill;
+    
 }

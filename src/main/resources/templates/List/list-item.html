@@ -100,89 +100,60 @@
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Nearest Orders</h3>
-                            <a class="button" th:href="@{/inventory/createItem}">Create item</a>
-                            <a class="button" th:href="@{/inventory/list-item}">List item</a>
+                            <h3>List Item</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>Client id</td>
-                                            <td>Total Bill</td>
-                                            <td>Status</td>
+                                            <td>ID</td>
+                                            <td>Title</td>
+                                            <td>Type</td>
+                                            <td>MfgDate</td>
+                                            <td>Price</td>
+                                            <td>Quantity</td>
+                                            <td>Active</td>
+                                            <td>Details</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>UI/UX Design</td>
-                                            <td>UI Team</td>
-                                            <td><span class="status pink"></span> in progress</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ABC shop</td>
-                                            <td>Mobile Team</td>
-                                            <td><span class="status purple"></span> pending
+                                        <tr th:each="item : ${listItem}">
+                                            <td>
+                                                <a th:text="*{item.id}"></a>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>UI Team</td>
-                                            <td><span class="status orange"></span> in progress</td>
-                                        </tr>
-                                        <tr>
-                                            <td>UI/UX xxx</td>
-                                            <td>UI Team</td>
-                                            <td><span class="status pink"></span> in progress</td>
-                                        </tr>
+                                            <td>
+                                                <a th:text="*{item.title}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="*{item.type}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="*{item.mfgDate}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="*{item.price}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="*{item.quantity}"></a>
+                                            </td>
+                                            <td>
+                                                <span class="status" th:classappend="${item.active}"></span>
+                                                <span th:text="*{item.active}"></span>
+                                            </td>
+                                            <td>
+                                                <a class="button" th:href="@{'/inventory/list-item/details/'+*{item.id}}">Details</a>
+                                            </td>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <div class="customers"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>New customer</h3>
-                        <button>See all <span class="las la-arrow-right"></span></button>
-                    </div>
-                    <div class="card-body">
-                        <div class="customer">
-                            <div class="info">
-                                <img src="image/2.jpg" width="40px" height="40px" alt="">
-                            </div>
-                            <div>
-                                <h4>Ho Quy Truong</h4>
-                                <small>Developer</small>
-                            </div>
-                        </div>
-                        <div class="contact">
-                            <span class="las la-user-circle"></span>
-                            <span class="las la-comment"></span>
-                            <span class="las la-phone"></span>
-                        </div>
-                        <div class="customer">
-                            <div class="info">
-                                <img src="image/2.jpg" width="40px" height="40px" alt="">
-                            </div>
-                            <div>
-                                <h4>Ho Quy Truong</h4>
-                                <small>Developer</small>
-                            </div>
-                        </div>
-                        <div class="contact">
-                            <span class="las la-user-circle"></span>
-                            <span class="las la-comment"></span>
-                            <span class="las la-phone"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </main>
-    </div>
+        </div>
 </body>
 
 </html>

@@ -2,6 +2,8 @@ package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,5 +48,8 @@ public class Member implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="address_id",referencedColumnName = "id" ,nullable = true)
     private Address addressId;
+
+    @OneToMany(mappedBy="member")
+    private List<Order> orders = new ArrayList<Order>();
     
 }
